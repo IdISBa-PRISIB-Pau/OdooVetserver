@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Clínica Lemoa",
+    'name': "Veterinary Clinic",
 
     'summary': """
         Clínica Lemoa 
     """,
     'description': """
-        Sistema de gestión de Clínica Veterinaria basado en EquiClinic by Bilal
+        Veterinary clinic management module based on EquiClinic by Bilal
     """,
 
     'author': "ErrorAndTrial",

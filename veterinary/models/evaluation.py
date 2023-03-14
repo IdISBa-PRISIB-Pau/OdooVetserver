@@ -13,12 +13,23 @@ class Evaluation(models.Model):
     _name = 'veterinary.evaluation'
     _inherit = ['mail.thread']
 
+    @api.multi
+    def default_stage(self):
+        return self.env['veterinary.evaluation.stages'].search([('name', '=', 'New')])
+
+    @api.model
+    def _read_group_stage_ids(self, stages, domain, order):
+        stage_ids = self.env['veterinary.evaluation.stages'].search([])
+        return stage_ids
+
     name = fields.Char('Name', compute='_compute_name')
     animal = fields.Many2one('veterinary.animal', string='Animal', readonly=True)
     appointment_id = fields.Many2one('veterinary.appointment', string='Appointment')
     description = fields.Char(string="Reason for consultation", store=True, related='appointment_id.description')
 
     current_illness = fields.Text('Current illness')
+    stage_id = fields.Many2one('veterinary.evaluation.stages', string='Stage', required=True, default=default_stage,
+                               group_expand='_read_group_stage_ids')
     user_id = fields.Many2one('res.users', string='Doctor', index=True, track_visibility='onchange',
                               default=lambda self: self.env.user)
     partner_id = fields.Many2one('res.partner', string='Owner', required=True, readonly=True)
@@ -31,7 +42,7 @@ class Evaluation(models.Model):
     # Musculoskeletal System Page
     conformation = fields.Char('Conformation')
     feet_shoeing = fields.Char('Feet and Shoeing')
-    lf = fields.Char('LF')
+    le = fields.Char('LF')
     rf = fields.Char('RF')
     lh = fields.Char('LH')
     rh = fields.Char('RH')
@@ -122,3 +133,7 @@ class Evaluation(models.Model):
             'context': ctx,
         }
 
+
+class EvaluationStages(models.Model):
+    _name = 'veterinary.evaluation.stages'
+    name = fields.Char('Stage')

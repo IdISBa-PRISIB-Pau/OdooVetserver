@@ -32,7 +32,7 @@ class Appointment(models.Model):
     user_id = fields.Many2one('res.users', string='Doctor', required=True, track_visibility='onchange',
                               default=lambda self: self.env.user)
     cancel_reason = fields.Text('Reason of cancellation')
-    invoice_ids = fields.One2many('AccountInvoice', 'appointment_id', string="Appointment Id")
+    invoice_ids = fields.One2many('account.invoice', 'appointment_id', string="Appointment Id")
     total_invoiced = fields.Char('Total', compute='_total_count')
     state = fields.Selection(
         [('draft', 'Draft'),
@@ -148,7 +148,7 @@ class Appointment(models.Model):
                 'partner_id': self.partner_id.id,
             }
             picking = self.env['veterinary.evaluation'].create(pick)
-        return picking.invoice_view()
+        return self.invoice_view()
 
     @api.one
     def action_create_invoice(self, grouped=False, final=False):
@@ -159,22 +159,22 @@ class Appointment(models.Model):
         invoices_origin = {}
         invoices_name = {}
 
-        for appointment in self:
-            group_key = appointment.id
-            for line in appointment.evaluation_id.prpcedures.sorted(key=lambda l: l.qty_to_invoice < 0):
-                if float_is_zero(line.qty_to_invoice, precision_digits=precision):
-                    continue
-                if line.qty_to_invoice > 0:
-                    line.invoice_line_create(invoices[group_key].id, line.qty_to_invoice)
-                elif line.qty_to_invoice < 0 and final:
-                    line.invoice_line_create(invoices[group_key].id, line.qty_to_invoice)
-        
-        for group_key in invoices:
-            invoices[group_key].write({'name': ', '.join(invoices_name[group_key]),
-                                       'origin': ', '.join(invoices_origin[group_key])})
-        
-        if not invoices:
-            raise UserError(_('There is no invoiceable line.'))
+        # for appointment in self:
+        #     group_key = appointment.id
+        #     for line in appointment.evaluation_id.prescriptions.sorted(key=lambda l: l.qty_to_invoice < 0):
+        #         if float_is_zero(line.qty_to_invoice, precision_digits=precision):
+        #             continue
+        #         if line.qty_to_invoice > 0:
+        #             line.invoice_line_create(invoices[group_key].id, line.qty_to_invoice)
+        #         elif line.qty_to_invoice < 0 and final:
+        #             line.invoice_line_create(invoices[group_key].id, line.qty_to_invoice)
+        #
+        # for group_key in invoices:
+        #     invoices[group_key].write({'name': ', '.join(invoices_name[group_key]),
+        #                                'origin': ', '.join(invoices_origin[group_key])})
+        #
+        # if not invoices:
+        #     raise UserError(_('There is no invoiceable line.'))
 
         invoice.compute_taxes()
         if not invoice.invoice_line_ids:
