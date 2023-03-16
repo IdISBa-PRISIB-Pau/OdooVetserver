@@ -64,25 +64,21 @@ echo -e "\n--- Installing Python 3 + pip3 --"
 sudo apt-get install python3 python3-pip -y
 
 echo -e "\n---- Install tool packages ----"
-sudo apt-get install wget git bzr python-pip gdebi-core -y
-
-sudo pip install markupsafe==2.0.1
-sudo apt install build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev curl libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev llvm 
-sudo apt wget python3-dev python3-venv python3-wheel libfreetype6-dev libxml2-dev libzip-dev libldap2-dev libsasl2-dev python3-setuptools node-less libjpeg-dev zlib1g-dev libpq-dev libxslt1-dev libldap2-dev libtiff5-dev libjpeg8-dev libopenjp2-7-dev liblcms2-dev libwebp-dev libharfbuzz-dev libfribidi-dev libxcb1-dev
-sudo apt-get install libjpeg zlib libjpeg-turbo8 libjpeg-turbo8 libxrender1 xfonts-75dpi xfonts-base -y
-sudo apt-get install libtiff5-dev libjpeg8-dev libopenjp2-7-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python3-tk libharfbuzz-dev libfribidi-dev libxcb1-dev -y
-sudo apt-get install fontconfig
+sudo apt install build-essential curl libbz2-dev libffi-dev libfreetype6-dev libfribidi-dev libharfbuzz-dev libjpeg-dev libjpeg8-dev liblcms2-dev libldap2-dev liblzma-dev libncursesw5-dev libopenjp2-7-dev libpq-dev libreadline-dev libsasl2-dev libsqlite3-dev libssl-dev libtiff5-dev libwebp-dev libxcb1-dev libxml2-dev libxmlsec1-dev libxslt1-dev libzip-dev llvm node-less python3-dev python3-setuptools python3-venv python3-wheel tk-dev wget xz-utils zlib1g-dev -y
+sudo apt-get install wget git bzr python-pip gdebi-core fontconfig libfreetype6-dev libfribidi-dev libharfbuzz-dev libjpeg libjpeg-turbo8 libjpeg8-dev liblcms2-dev libopenjp2-7-dev libtiff5-dev libwebp-dev libxcb1-dev libxrender1 python3-tk tcl8.6-dev tk8.6-dev xfonts-75dpi xfonts-base zlib zlib1g-dev -y
 sudo apt-get install -f
+sudo pip install markupsafe==2.0.1
 sudo pip install pillow
 sudo pip3 install pillow
 sudo pip3 install Werkzeug==0.11.15
 echo -e "\n---- Install python packages ----"
-sudo apt-get install python-pypdf2 python-dateutil python-feedparser python-ldap python-libxslt1 python-lxml python-mako python-openid python-psycopg2 python-pybabel python-pychart python-pydot python-pyparsing python-reportlab python-simplejson python-tz python-vatnumber python-vobject python-webdav python-werkzeug python-xlwt python-yaml python-zsi python-docutils python-psutil python-mock python-unittest2 python-jinja2 python-pypdf python-decorator python-requests python-passlib python-pil -y
-sudo pip3 install pypdf2 Babel passlib Werkzeug decorator python-dateutil pyyaml psycopg2 psutil html2text docutils lxml pillow reportlab ninja2 requests gdata XlsxWriter vobject python-openid pyparsing pydot mock mako Jinja2 ebaysdk feedparser xlwt psycogreen suds-jurko pytz pyusb greenlet xlrd 
+sudo apt-get install python-dateutil python-decorator python-docutils python-feedparser python-jinja2 python-ldap python-libxslt1 python-lxml python-mako python-mock python-openid python-passlib python-pil python-psutil python-psycopg2 python-pybabel python-pychart python-pydot python-pyparsing python-pypdf python-pypdf2 python-reportlab python-requests python-simplejson python-tz python-unittest2 python-vatnumber python-vobject python-webdav python-werkzeug python-xlwt python-yaml python-zsi -y
+
+sudo pip3 install pypdf2 Babel passlib Werkzeug decorator python-dateutil pyyaml psycopg2 psutil html2text docutils lxml pillow reportlab ninja2 requests gdata XlsxWriter vobject python-openid pyparsing pydot mock mako Jinja2 ebaysdk feedparser xlwt psycogreen suds-jurko pytz pyusb greenlet xlrd -y
 
 echo -e "\n---- Install python libraries ----"
 # This is for compatibility with Ubuntu 16.04. Will work on 14.04, 15.04 and 16.04
-sudo apt-get install python3-suds
+sudo apt-get install python3-suds -y
 
 echo -e "\n--- Install other required packages"
 sudo apt-get install node-clean-css -y
@@ -90,30 +86,13 @@ sudo apt-get install node-less -y
 sudo apt-get install python-gevent -y
 
 #--------------------------------------------------
-# Install Wkhtmltopdf if needed
-#--------------------------------------------------
-if [ $INSTALL_WKHTMLTOPDF = "True" ]; then
-  echo -e "\n---- Install wkhtml and place shortcuts on correct place for ODOO 11 ----"
-  #pick up correct one from x64 & x32 versions:
-  if [ "`getconf LONG_BIT`" == "64" ];then
-      _url=$WKHTMLTOX_X64
-  else
-      _url=$WKHTMLTOX_X32
-  fi
-  sudo wget $_url
-  sudo gdebi --n `basename $_url`
-  sudo ln -s /usr/local/bin/wkhtmltopdf /usr/bin
-  sudo ln -s /usr/local/bin/wkhtmltoimage /usr/bin
-else
-  echo "Wkhtmltopdf isn't installed due to the choice of the user!"
-fi
+# Install Wkhtmltopdf 
 sudo apt install wkhtmltopdf
 sudo apt-get install wkhtmltopdf
-#mount shared network unit
+# Mount shared network unit
 sudo mkdir /home/cvlemoadmin/CVLemoa
 sudo mount /dev/sdb /home/cvlemoadmin/CVLemoa
 sudo apt-get install samba
-
 
 echo -e "\n---- Create ODOO system user ----"
 sudo adduser --system --quiet --shell=/bin/bash --home=$OE_HOME --gecos 'ODOO' --group $OE_USER
