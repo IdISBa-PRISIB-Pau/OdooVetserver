@@ -107,8 +107,8 @@ if [ $INSTALL_WKHTMLTOPDF = "True" ]; then
 else
   echo "Wkhtmltopdf isn't installed due to the choice of the user!"
 fi
-
-sudo apt-get install Wkhtmltopdf
+sudo apt install wkhtmltopdf
+sudo apt-get install wkhtmltopdf
 #mount shared network unit
 sudo mkdir /home/cvlemoadmin/CVLemoa
 sudo mount /dev/sdb /home/cvlemoadmin/CVLemoa
