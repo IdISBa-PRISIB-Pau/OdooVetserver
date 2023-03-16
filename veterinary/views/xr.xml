@@ -4,7 +4,7 @@
     <data>
 
         <record model="ir.actions.act_window" id="xr_list_action">
-            <field name="name">Radiology</field>
+            <field name="name">Radiología</field>
             <field name="res_model">veterinary.xr</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
@@ -28,7 +28,7 @@
             <field name="arch" type="xml">
                 <form string="xr Form" create="false">
                     <header>
-                        <button name="action_xr_sent" type="object" string="Send by Email" class="oe_highlight" />
+                        <button name="action_xr_sent" type="object" string="Enviar por Email" class="oe_highlight" />
                     </header>
                     <sheet>
                         <group>
@@ -45,7 +45,7 @@
                             
                         </group>                       
                         <notebook>
-                           <page string="XR Exam">
+                           <page string="Prueba Rx">
                                 <group>
                                     <group>
                                         <field name="xr_projection" />
@@ -74,7 +74,7 @@
                 <search>
                     <group string="Group By">
                         <filter name="group_by_animal" string="Animal" context="{'group_by': 'animal'}"/>
-                        <filter name="group_by_name" string="Appointment" context="{'group_by': 'appointment_id'}"/>
+                        <filter name="group_by_name" string="Cita" context="{'group_by': 'appointment_id'}"/>
                     </group>
                 </search>
             </field>

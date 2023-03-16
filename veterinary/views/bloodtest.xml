@@ -3,7 +3,7 @@
     <data>
 
         <record model="ir.actions.act_window" id="bloodtest_list_action">
-            <field name="name">Blood tests</field>
+            <field name="name">Analíticas</field>
             <field name="res_model">veterinary.bloodtest</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>

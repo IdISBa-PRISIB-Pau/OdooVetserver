@@ -175,11 +175,11 @@
             <field name="arch" type="xml">
                 <form string="Confirm Draft Invoices">
                     <p class="oe_grey">
-                        Confirm draft appointment
+                        Confirmar cita
                     </p>
                     <footer>
-                        <button string="Confirm appointments" name="appointment_confirm" type="object" default_focus="1" class="btn-primary"/>
-                        <button string="Cancel" class="btn-default" special="cancel"/>
+                        <button string=" Confirmar cita" name="appointment_confirm" type="object" default_focus="1" class="btn-primary"/>
+                        <button string="Cancelar" class="btn-default" special="cancel"/>
                     </footer>
                 </form>
             </field>

@@ -7,38 +7,36 @@
         <!-- <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" /> -->
         <div class="page">
             <h2>Consultation Report</h2>
-            <strong>Appointment:</strong>
+            <strong>Cita:</strong>
             <span t-field="doc.appointment_id"/><br/>
-            <strong>Stage:</strong>
-            <span t-field="doc.stage_id"/><br/>
             <strong>Animal:</strong>
             <span t-field="doc.animal"/>
-            <strong>NO: </strong> <span t-field="doc.animal.microchip_number"/>
-            <strong>Sex: </strong> <span t-field="doc.animal.sex"/>
-            <strong>Age: </strong> <span t-field="doc.animal.age"/>
-            <strong>Bread and Use: </strong> <span t-field="doc.animal.bread"/>
-            <strong>Colour: </strong> <span t-field="doc.animal.colour"/>
-            <strong>Owner: </strong> <span t-field="doc.animal.partner_id"/>
+            <strong>Número: </strong> <span t-field="doc.animal.microchip_number"/>
+            <strong>Sexo: </strong> <span t-field="doc.animal.sex"/>
+            <strong>Edad: </strong> <span t-field="doc.animal.age"/>
+            <strong>Procedencia: </strong> <span t-field="doc.animal.bread"/>
+            <strong>Color: </strong> <span t-field="doc.animal.colour"/>
+            <strong>Dueño: </strong> <span t-field="doc.animal.partner_id"/>
             <br/>
-            <strong>Cause of consultation: </strong> <span t-field="doc.description"/>
+            <strong>Motivo de consulta: </strong> <span t-field="doc.description"/>
             <br/>
-            <strong>Current illness: </strong> <span t-field="doc.current_illness"/>
+            <strong>Enfermedad actual: </strong> <span t-field="doc.current_illness"/>
             <br/> <br/>  
-            <strong>Conditions: </strong> 
+            <strong>Diagnósticos: </strong> 
             <br/>
             <t t-foreach="doc.conditions"   t-as="line">
                 <span t-esc="line.name"/><br/>            
             </t>
             <br/> 
             <br/> 
-             <strong>Procedures: </strong> 
+             <strong>Procedimientos: </strong> 
             <br/>
             <t t-foreach="doc.procedures"   t-as="line">
                 <span t-esc="line.name"/><br/>              
             </t>
             <br/> 
             <br/> 
-             <strong>Prescriptions: </strong> 
+             <strong>Prescripciones: </strong> 
             <br/>
             <t t-foreach="doc.prescriptions"   t-as="line">
                 <span t-esc="line.name"/><br/>                
@@ -48,68 +46,68 @@
             <table class="table table-condensed mt0" >
                 <thead>
                     <tr>
-                        <th colspan='4'>Musculoskeletal</th>
+                        <th colspan='4'>Musculoesquelético</th>
                     </tr>
                 </thead>
                 <tbody class="invoice_tbody">
                     <tr>
                             <t t-if="doc.conformation">   
-                            <td>Conformation:</td>
+                            <td>Morfología:</td>
                             <td><span t-field="doc.conformation"/></td>   
                             </t>      
                             <t t-if="doc.feet_shoeing">              
-                            <td>Feet and Shoeing:</td>
+                            <td>Patas:</td>
                             <td><span t-field="doc.feet_shoeing"/></td>
                             </t>
                     </tr>
                     <tr>
-                        <t t-if="doc.le"> 
-                        <td>LF:</td>
+                        <t t-if="doc.lf"> 
+                        <td>Trasera izquierda:</td>
                         <td><span t-field="doc.lf"/></td>
                         </t>
                         <t t-if="doc.rf"> 
-                        <td>RF:</td>
+                        <td>Trasera derecha:</td>
                         <td><span t-field="doc.rf"/></td>
                         </t>
                     </tr>
                     <tr>
                         <t t-if="doc.lh"> 
-                        <td>LH:</td>
+                        <td>Delantera izquierda:</td>
                         <td><span t-field="doc.lh"/></td>
                         </t>
                         <t t-if="doc.rh"> 
-                        <td>RH:</td>
+                        <td>Delantera derecha:</td>
                         <td><span t-field="doc.rh"/></td>
                         </t>
 
                     </tr>
                     <tr>
                         <t t-if="doc.neck_back_pelvis"> 
-                        <td>Neck, Back and Pelvis:</td>
+                        <td>Cuello, columna, pelvis:</td>
                         <td><span t-field="doc.neck_back_pelvis"/></td>
                         </t>
                         <t t-if="doc.flexion_tests"> 
-                        <td>Flexion tests:</td>
+                        <td>Test de flexión:</td>
                         <td><span t-field="doc.flexion_tests"/></td>
                         </t>
                     </tr>
                     <tr>
                         <t t-if="doc.ridden"> 
-                        <td>Ridden:</td>
+                        <td>Montura:</td>
                         <td><span t-field="doc.ridden"/></td>
                         </t>
                         <t t-if="doc.diagnostic_imaging"> 
-                            <td>Diagnostic Imaging:</td>
+                            <td>Diagnóstico por imagen:</td>
                         <td><span t-field="doc.diagnostic_imaging"/></td>
                         </t>
                     </tr>
                     <tr>
                         <t t-if="doc.walk"> 
-                        <td>Walk:</td>
+                        <td>Paso:</td>
                         <td><span t-field="doc.walk"/></td>
                         </t>
                         <t t-if="doc.trot"> 
-                            <td>Trot:</td>
+                            <td>Carrera:</td>
                         <td><span t-field="doc.trot"/></td>
                         </t>
                     </tr>
@@ -119,7 +117,7 @@
             <table class="table table-condensed mt0">
                 <thead>
                     <tr>
-                        <th colspan='4'>Respiratory</th>
+                        <th colspan='4'>Respiratorio</th>
                     </tr>
                 </thead>
                 <tbody class="invoice_tbody">
@@ -129,13 +127,13 @@
                         <td><span t-field="doc.res_general"/></td>
                         </t>
                         <t t-if="doc.upper_airway"> 
-                        <td>Upper airway:</td>
+                        <td>Vía aérea:</td>
                         <td><span t-field="doc.upper_airway"/></td>
                         </t>
                     </tr>
                     <tr>
                         <t t-if="doc.lung_auscultation"> 
-                        <td>Lung Auscultation:</td>
+                        <td>Auscultación pulmonar:</td>
                         <td><span t-field="doc.lung_auscultation"/></td>
                         <td></td>
                         <td></td>
@@ -156,7 +154,7 @@
                         <td><span t-field="doc.cardi_general"/></td>
                         </t>
                         <t t-if="doc.auscultation"> 
-                        <td>Auscultation:</td>
+                        <td>Auscultación:</td>
                         <td><span t-field="doc.auscultation"/></td>
                         </t>
                     </tr>
@@ -183,13 +181,13 @@
                         <td><span t-field="doc.gest_general"/></td>
                         </t>
                         <t t-if="doc.worming_history"> 
-                            <td>Worming History:</td>
+                            <td>Historia de desparasitación:</td>
                         <td><span t-field="doc.worming_history"/></td>
                         </t>
                     </tr>
                     <tr>
                         <t t-if="doc.teeth"> 
-                            <td>Teeth:</td>
+                            <td>Dentición:</td>
                         <td><span t-field="doc.teeth"/></td>
                         <td></td>
                         <td></td>
@@ -200,7 +198,7 @@
             <table class="table table-condensed mt0">
                 <thead>
                     <tr>
-                        <th colspan='4'>Nervous:</th>
+                        <th colspan='4'>Neurológico:</th>
                     </tr>
                 </thead>
                 <tbody class="invoice_tbody">
@@ -210,17 +208,17 @@
                         <td><span t-field="doc.nevr_general"/></td>
                         </t>
                         <t t-if="doc.mentation"> 
-                        <td>Mentation:</td>
+                        <td>Consciencia:</td>
                         <td><span t-field="doc.mentation"/></td>
                         </t>
                     </tr>
                     <tr>
                         <t t-if="doc.gait"> 
-                        <td>Gait:</td>
+                        <td>Marcha:</td>
                         <td><span t-field="doc.gait"/></td>
                         </t>
                         <t t-if="doc.eyes"> 
-                            <td>Eyes:</td>
+                            <td>Vista:</td>
                         <td><span t-field="doc.eyes"/></td>
                         </t>
                     </tr>
@@ -229,17 +227,17 @@
             <table class="table table-condensed mt0">
                 <thead>
                     <tr>
-                        <th colspan='4'>Reproductive Urinary</th>
+                        <th colspan='4'>Reproductivo y Urológico</th>
                     </tr>
                 </thead>
                 <tbody class="invoice_tbody">
                     <tr>
                         <t t-if="doc.fig"> 
-                        <td>Female / Intact Male / Gelding:</td>
+                        <td>Castración:</td>
                         <td><span t-field="doc.fig"/></td>
                         </t>
                         <t t-if="doc.testicles"> 
-                        <td>Testicles:</td>
+                        <td>Testículos:</td>
                         <td><span t-field="doc.testicles"/></td>
                         </t>
                     </tr>
@@ -256,17 +254,17 @@
             <table class="table table-condensed">
                 <thead>
                     <tr>
-                        <th colspan='4'>Skin</th>
+                        <th colspan='4'>Piel</th>
                     </tr>
                 </thead>
                 <tbody class="invoice_tbody">
                     <tr>
                         <t t-if="doc.scars"> 
-                        <td>Scars – Traumatic / Surgical:</td>
+                        <td>Cicatrices - Traumáticas / Quirúrgicas:</td>
                         <td><span t-field="doc.scars"/></td>
                         </t>
                         <t t-if="doc.melanomas"> 
-                            <td>Tumours-Melanomas, Sarcoids:</td>
+                            <td>Tumores:</td>
                         <td><span t-field="doc.melanomas"/></td>
                         </t>
                     </tr>
@@ -276,13 +274,13 @@
                         <td><span t-field="doc.Dermatitis"/></td>
                         </t>
                         <t t-if="doc.Allergy"> 
-                            <td>Allergy:</td>
+                            <td>Alergias:</td>
                         <td><span t-field="doc.Allergy"/></td>
                         </t>
                     </tr>
                     <tr>
                         <t t-if="doc.skin_other"> 
-                            <td>Other:</td>
+                            <td>Otros:</td>
                         <td><span t-field="doc.skin_other"/></td>
 
                         <td></td>
@@ -295,7 +293,7 @@
             <table class="table table-condensed">
                 <thead>
                     <tr>
-                        <th>Other:</th>
+                        <th>Otros:</th>
                     </tr>
                 </thead>
                 <tbody class="invoice_tbody">
@@ -309,7 +307,7 @@
             <table class="table table-condensed">
                 <thead>
                     <tr>
-                        <th>Overall Assessment:</th>
+                        <th>Orientación Diagnóstica:</th>
                     </tr>
                 </thead>
                 <tbody class="invoice_tbody">
@@ -321,7 +319,7 @@
             <table class="table table-condensed">
                 <thead>
                     <tr>
-                        <th>Recommendations:</th>
+                        <th>Recomendaciones:</th>
                     </tr>
                 </thead>
                 <tbody class="invoice_tbody">

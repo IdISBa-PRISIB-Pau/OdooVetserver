@@ -3,7 +3,7 @@
     <data>
 
         <record model="ir.actions.act_window" id="citology_list_action">
-            <field name="name">Citology</field>
+            <field name="name">Citología</field>
             <field name="res_model">veterinary.citology</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
@@ -75,7 +75,7 @@
                 <search>
                     <group string="Group By">
                         <filter name="group_by_animal" string="Animal" context="{'group_by': 'animal'}"/>
-                        <filter name="group_by_name" string="Appointment" context="{'group_by': 'appointment_id'}"/>
+                        <filter name="group_by_name" string="Cita" context="{'group_by': 'appointment_id'}"/>
                     </group>
                 </search>
             </field>

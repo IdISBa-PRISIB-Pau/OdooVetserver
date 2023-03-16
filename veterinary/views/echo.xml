@@ -27,7 +27,7 @@
             <field name="arch" type="xml">
                 <form string="eco Form" create="false">
                     <header>
-                        <button name="action_echo_sent" type="object" string="Send by Email" class="oe_highlight" />
+                        <button name="action_echo_sent" type="object" string="Enviar por Email" class="oe_highlight" />
                     </header>
                     <sheet>
                         <group>
@@ -39,7 +39,7 @@
                             </group>
                         </group>
                         <notebook>                            
-                            <page string="Sonography">
+                            <page string="Ecografía">
                                 <group>
                                     <group>
                                         <field name="region" />
@@ -69,7 +69,7 @@
                 <search>
                     <group string="Group By">
                         <filter name="group_by_animal" string="Animal" context="{'group_by': 'animal'}"/>
-                        <filter name="group_by_name" string="Appointment" context="{'group_by': 'appointment_id'}"/>
+                        <filter name="group_by_name" string="Cita" context="{'group_by': 'appointment_id'}"/>
                     </group>
                 </search>
             </field>

@@ -3,7 +3,7 @@
     <data>
 
         <record model="ir.actions.act_window" id="animal_list_action1">
-            <field name="name">Animals</field>
+            <field name="name">Animales</field>
             <field name="res_model">veterinary.animal</field>
             <field name="view_type">form</field>
             <field name="domain">[('partner_id','=','default_partner_id')]</field>
@@ -11,7 +11,7 @@
             <field name="view_mode">tree,form,kanban</field>
         </record>
         <record model="ir.actions.act_window" id="animal_list_action">
-            <field name="name">Animals</field>
+            <field name="name">Animales</field>
             <field name="res_model">veterinary.animal</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,kanban</field>
@@ -54,7 +54,7 @@
                         <field name="image" widget="image" class="oe_avatar" />
                         <div class="oe_title">
                             <h1>
-                                <field name="name" default_focus="1" placeholder="Name"/>
+                                <field name="name" default_focus="1" placeholder="Nombre"/>
                             </h1>  
                             <field name="microchip_number" placeholder="Chip Number"/>
                         </div>
@@ -72,19 +72,19 @@
                             </group>
                         </group>
                         <notebook>
-                            <page string="Veterinary Evaluation">
+                            <page string="Exploraciones">
                                 <field name="evaluation"/>
                             </page>
-                            <page string="Blood Tests">
+                            <page string="Analíticas">
                                 <field name="bloodtest"/>
                             </page>
-                            <page string="Citology">
+                            <page string="Citología">
                                 <field name="citology"/>
                             </page>
-                            <page string="Echography">
+                            <page string="Ecografía">
                                 <field name="echo"/>
                             </page>
-                            <page string="Radiology">
+                            <page string="Radiología">
                                 <field name="xr"/>
                             </page> 
                         </notebook>
@@ -99,10 +99,10 @@
                 <search>
                     <field name="name"/>
                     <group string="Group By">
-                        <filter name="group_by_colour" string="Colour" context="{'group_by': 'colour'}"/>
-                        <filter name="group_by_sex" string="Sex" context="{'group_by': 'sex'}"/>
-                        <filter name="group_by_bread" string="Bread" context="{'group_by': 'bread'}"/>
-                        <filter name="group_by_partner_id" string="Owner" context="{'group_by': 'partner_id'}"/>
+                        <filter name="group_by_colour" string="Color" context="{'group_by': 'colour'}"/>
+                        <filter name="group_by_sex" string="Sexo" context="{'group_by': 'sex'}"/>
+                        <filter name="group_by_bread" string="Procedencia" context="{'group_by': 'bread'}"/>
+                        <filter name="group_by_partner_id" string="Dueño" context="{'group_by': 'partner_id'}"/>
                     </group>
                 </search>
             </field>
@@ -164,7 +164,7 @@
 
 
         <record id="action_animal_form" model="ir.actions.act_window">
-            <field name="name">Animals</field>
+            <field name="name">Animales</field>
             <field name="res_model">veterinary.animal</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
