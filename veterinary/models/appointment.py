@@ -21,25 +21,26 @@ class AccountInvoice(models.Model):
 class Appointment(models.Model):
     _name = "veterinary.appointment"
     _order = "dateOfAppointment desc"
-    name = fields.Char(string='Name', readonly=True, default=lambda self: _('New'))
-    description = fields.Char('Description')
-    partner_id = fields.Many2one('res.partner', string='Owner', required=True)
-    dateOfAppointment = fields.Datetime('Date of Appointment', required=True)
-    animals = fields.Many2many('veterinary.animal', string='Animals')
-    evaluation_id = fields.One2many('veterinary.evaluation', 'name', string='Evaluation')
+    name = fields.Char(string='Código', readonly=True, default=lambda self: _('New'))
+    description = fields.Char('Descripción')
+    partner_id = fields.Many2one('res.partner', string='Dueño', required=True)
+    dateOfAppointment = fields.Datetime('Fecha de la cita', required=True)
+    animals = fields.Many2many('veterinary.animal', string='Animales')
+    evaluation_id = fields.One2many('veterinary.evaluation', 'name', string='Exploraciones')
+    num_evaluations = fields.Char('Evaluations', compute='_total_eval', default='0')
     telephone = fields.Char(related='partner_id.mobile')
     animal_id = fields.Many2one('veterinary.animal')
     user_id = fields.Many2one('res.users', string='Doctor', required=True, track_visibility='onchange',
                               default=lambda self: self.env.user)
-    cancel_reason = fields.Text('Reason of cancellation')
+    cancel_reason = fields.Text('Motivo de cancelación')
     invoice_ids = fields.One2many('account.invoice', 'appointment_id', string="Appointment Id")
     total_invoiced = fields.Char('Total', compute='_total_count')
     state = fields.Selection(
-        [('draft', 'Draft'),
-         ('confirm', 'Confirm'),
-         ('done', 'Done'),
-         ('cancel', 'Cancel')]
-        , string='Status', index=True, default='draft',
+        [('draft', 'Pendiente'),
+         ('confirm', 'Confirmada'),
+         ('done', 'Realizada'),
+         ('cancel', 'Cancelar')]
+        , string='Estado', index=True, default='draft',
         track_visibility='onchange', copy=False
     )
 
@@ -53,6 +54,10 @@ class Appointment(models.Model):
     def _total_count(self):
         t = self.env['account.invoice'].search([['appointment_id', '=', self.id]])
         self.total_invoiced = len(t)
+    
+    @api.multi
+    def _total_eval(self):
+        self.num_evaluations = len(evaluation_id)
 
     @api.multi
     def action_cancel_appointment(self):
@@ -146,9 +151,10 @@ class Appointment(models.Model):
                 'animal': animal.id,
                 'appointment_id': self.id,
                 'partner_id': self.partner_id.id,
+                'view_type': 'form',
             }
             picking = self.env['veterinary.evaluation'].create(pick)
-        return self.invoice_view()
+        return pick
 
     @api.one
     def action_create_invoice(self, grouped=False, final=False):
@@ -199,3 +205,7 @@ class Appointment(models.Model):
     @api.one
     def action_done(self):
         self.state = 'done'
+
+class EvaluationStages(models.Model):
+    _name = 'veterinary.evaluation.stages'
+    name = fields.Char('Stage')

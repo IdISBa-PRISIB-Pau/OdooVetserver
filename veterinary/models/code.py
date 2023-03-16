@@ -12,9 +12,9 @@ from odoo.tools.misc import formatLang
 
 class Code(models.Model):
     _name = 'veterinary.code'
-    name = fields.Char(string='Name')
-    code = fields.Char(string='code')
-    category = fields.Char(string='Category', domain="{'Diagnostic', 'Procedure', 'Drug treatment', 'Other'}" )
+    name = fields.Char(string='Nombre')
+    code = fields.Char(string='Código')
+    category = fields.Char(string='Categoría', domain="{'Diagnóstico', 'Procedimiento', 'Tratamiento farmacológico', 'Otro'}" )
 #    evaluations = fields.Many2many('veterinary.evaluation', 'cod_eval_rel',  'name', 'name')
     
     

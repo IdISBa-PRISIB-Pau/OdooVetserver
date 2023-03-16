@@ -16,15 +16,15 @@ class Echo(models.Model):
     _order = "date desc"
     name = fields.Char(string='Test ID', required=True, copy=False, readonly=True,index=True, default=lambda self: _('New'))
     animal = fields.Many2one('veterinary.animal')
-    owner_id = fields.Many2one('res.partner', string='Owner', required=True)
-    appointment_id = fields.Many2one('veterinary.appointment',string='Appointment',required=True)
-    date = fields.Datetime(string='Date', related='appointment_id.dateOfAppointment')
+    owner_id = fields.Many2one('res.partner', string='Dueño', required=True)
+    appointment_id = fields.Many2one('veterinary.appointment',string='Cita',required=True)
+    date = fields.Datetime(string='Fecha', related='appointment_id.dateOfAppointment')
     user_id = fields.Many2one('res.users', string='Doctor')
     # Musculoskeletal System Page
     region = fields.Char('Region')
-    findings_echo = fields.Char('Findings')    
-    other_echo = fields.Text('Other')
-    overall_assessment_echo = fields.Text('Overall Assessment')
+    findings_echo = fields.Char('Hallazgos')    
+    other_echo = fields.Text('Otros')
+    overall_assessment_echo = fields.Text('Interpretación')
     
     @api.model
     def create(self, vals):

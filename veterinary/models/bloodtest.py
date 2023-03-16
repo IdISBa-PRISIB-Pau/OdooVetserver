@@ -15,16 +15,42 @@ class BloodTest(models.Model):
     _order = "date desc"
     name = fields.Char(string='Test ID', required=True, copy=False, readonly=True,index=True, default=lambda self: _('New'))
     animal = fields.Many2one('veterinary.animal')
-    partner_id = fields.Many2one('res.partner', string='Owner', required=True)
-    appointment_id = fields.Many2one('veterinary.appointment',string='Appointment',required=True)
-    date = fields.Datetime(string='Date', related='appointment_id.dateOfAppointment')
+    partner_id = fields.Many2one('res.partner', string='Dueño', required=True)
+    appointment_id = fields.Many2one('veterinary.appointment',string='Cita',required=True)
+    date = fields.Datetime(string='Fecha', related='appointment_id.dateOfAppointment')
     user_id = fields.Many2one('res.users', string='Doctor')
     hematies = fields.Float('Hematíes')
     platellets = fields.Float('Plaquetas')
     neutro = fields.Float('Neutrófilos')
     linfo = fields.Float('Linfocitos')
-    other_bt = fields.Text('Other')
-    overall_assessment_bt = fields.Text('Overall Assessment')
+
+    alb = fields.Float('Albúmina')
+    tp = fields.Float('Proteinas totales')
+    ag = fields.Float('Alb/Glob')
+    glob = fields.Float('Globulina')
+
+    alp = fields.Float('ALP')
+    alt = fields.Float('ALT')
+    tbil = fields.Float('Bilirrubina T.')
+    amy = fields.Float('Amilasa')
+
+
+    crea = fields.Float('Creatinina')
+    bun = fields.Float('BUN')
+    bc = fields.Float('BUN/Crea')
+    urea = fields.Float('Urea')
+
+    glu = fields.Float('Glucosa')
+    na = fields.Float('Sodio')
+    k = fields.Float('Potasio')
+    nak = fields.Float('Sodio/Potasio')
+
+    ca = fields.Float('Calcio')
+    phos = fields.Float('Fósforo')
+    cca = fields.Float('Ca Corregido')
+
+    other_bt = fields.Text('Otros')
+    overall_assessment_bt = fields.Text('Interpretación')
     
     @api.model
     def create(self, vals):

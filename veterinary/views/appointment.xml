@@ -2,7 +2,7 @@
 <odoo>
     <data>   
         <record id="account_invoice_appointment" model="ir.ui.view">
-            <field name="name">Appointment</field>
+            <field name="name">Citas</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
@@ -13,17 +13,18 @@
         </record>
 
         <record model="ir.actions.act_window" id="appointment_list_action">
-            <field name="name">Appointment</field>
+            <field name="name">Cita</field>
             <field name="res_model">veterinary.appointment</field>
             <field name="view_type">form</field>
             <field name="view_mode">calendar,tree,form</field>
         </record>
         
         <record model="ir.actions.act_window" id="waitingroom_list_action">
-            <field name="name">Waitingroom</field>
+            <field name="name">Consulta</field>
             <field name="res_model">veterinary.appointment</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
+            <field name="domain">[('dateOfAppointment', '&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))),('dateOfAppointment', '&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]</field>
         </record>
 
         <record model="ir.ui.view" id="waitingroom_tree_view">
@@ -32,10 +33,10 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Appointment Tree" class="tree_buttons" >
-                    <button name="action_cancel_appointment" states="draft,confirm" string="Cancel" type="object" class="redbutton"/>
-                    <button name="action_confirm" states="draft" string="Confirm"  type="object" class="greenbutton"/> 
-                    <button name="action_done" states="confirm" string="Done" type="object" class="bluebutton"/>    
-                    <button name="action_create_invoice" context="{'search_default_partner_id':[partner_id],}" states="done" string="Invoice" type="object" class="yellowbutton"/>
+                    <button name="action_cancel_appointment" states="draft,confirm" string="Cancelar" type="object" class="redbutton"/>
+                    <button name="action_confirm" states="draft" string="Confirmar"  type="object" class="greenbutton"/> 
+                    <button name="action_done" states="confirm" string="Acabada" type="object" class="bluebutton"/>    
+                    <button name="invoice_view" context="{'search_default_partner_id':[partner_id],}" states="done" string="Factura" type="object" class="yellowbutton"/>
                     <field name="name"/>
                     <field name="description"/>
                     <field name="dateOfAppointment"/>
@@ -45,6 +46,7 @@
                 </tree>
             </field>
         </record>
+
 
         <record model="ir.ui.view" id="appointment_calendar_view">
             <field name="name">veterinary.appointment.calendar</field>
@@ -66,12 +68,12 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Appointment Tree" class="tree_buttons" >
-                    <button name="action_cancel_appointment" string="Cancel" states="draft,confirm" type="object" class="oe_highlight"/>
-                    <button name="action_confirm" string="Confirm" states="draft" type="object" class="oe_highlight"/> 
-                    <button name="action_done" states="confirm" string="Done" type="object" class="oe_highlight"/>    
-                    <button name="action_create_invoice" context="{
+                    <button name="action_cancel_appointment" string="Cancelar" states="draft,confirm" type="object" class="oe_highlight"/>
+                    <button name="action_confirm" string="Confirmar" states="draft" type="object" class="oe_highlight"/> 
+                    <button name="action_done" states="confirm" string="Acabada" type="object" class="oe_highlight"/>    
+                    <button name="invoice_view" context="{
                                         'search_default_partner_id':[partner_id],
-                                        }" states="done" string="Invoice" type="object" class="yellowbutton"/>
+                                        }" states="done" string="Factura" type="object" class="yellowbutton"/>
                     <field name="name"/>
                     <field name="description"/>
                     <field name="dateOfAppointment"/>
@@ -105,7 +107,7 @@
                                 </div>
                             </button>
                         </div>
-                        <h1 class="mt0">
+                         <h1 class="mt0">
                             <field name="name" /> 
                         </h1>
                         <group>

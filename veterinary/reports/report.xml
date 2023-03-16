@@ -65,7 +65,7 @@
                     <tr>
                         <t t-if="doc.le"> 
                         <td>LF:</td>
-                        <td><span t-field="doc.le"/></td>
+                        <td><span t-field="doc.lf"/></td>
                         </t>
                         <t t-if="doc.rf"> 
                         <td>RF:</td>
@@ -128,9 +128,9 @@
                         <td>General:</td>
                         <td><span t-field="doc.res_general"/></td>
                         </t>
-                        <t t-if="doc.upper_airway_endoscopy"> 
-                        <td>Upper airway endoscopy:</td>
-                        <td><span t-field="doc.upper_airway_endoscopy"/></td>
+                        <t t-if="doc.upper_airway"> 
+                        <td>Upper airway:</td>
+                        <td><span t-field="doc.upper_airway"/></td>
                         </t>
                     </tr>
                     <tr>

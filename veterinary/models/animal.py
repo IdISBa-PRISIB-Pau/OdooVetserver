@@ -16,31 +16,31 @@ class Animal(models.Model):
             rd = relativedelta(d2, d1)
             self.age = str(rd.years) + "y" +" "+ str(rd.months) + "m" +" "+ str(rd.days) + "d"
         else:
-            self.age = "No Date Of Birth!!"
+            self.age = "Sin fecha de nacimiento!!"
 
     image = fields.Binary(
         "Image", attachment=True,
         help="This field holds the image used as image for the product, limited to 1024x1024px.")
-    name = fields.Char('Animal Name', required=True)
-    microchip_number = fields.Char('Microchip Number',required=True)
-    dob = fields.Date('Date of Birth', required=True)
-    age = fields.Char(compute=onchange_age,string="Age",store=True)
+    name = fields.Char('Nombre', required=True)
+    microchip_number = fields.Char('Microchip/Número de historia',required=True)
+    dob = fields.Date('Fecha de nacimiento', required=True)
+    age = fields.Char(compute=onchange_age,string="Edad",store=True)
     appointment_id = fields.Many2many('veterinary.appointment')
     total_appointment = fields.Char('Total',compute='_total_appointment')
     colour =fields.Selection (
-        (('b','B'),('c','C'), ('g','G') ,('other','Other'))
-        ,required=True)
+        (('b','Blanco'),('c','Claro'), ('o','Oscuro') , ('n','Negro'),('other','Otro'))
+        ,required=False, string='Color')
     sex =fields.Selection ((
-        ('f','F'),('m','M'), ('g','G'))
-        ,required=True)
+        ('f','Femenino'),('m','Masculino'), ('d','Desconocido'))
+        ,required=True, string='Sexo')
     species =fields.Selection ((
-        ('cat','Cat'),('dog','Dog'),('other','Other'))
-        ,required=True,string="Species")
+        ('cat','Gato'),('dog','Perro'),('other','Otros'))
+        ,required=True,string="Especie")
     bread =fields.Selection ((
-        ('tb','TB'),('ar','AR'),
-        ('wb','WB'),('p','Pet'),('other','Other'))
-        ,required=True,string="Breed & Use")
-    partner_id = fields.Many2one('res.partner',string='Owner', required=True)
+        ('m','Mascota'),('cr','Criador'),
+        ('p','Protectora'),('other','Otro'))
+        ,required=True,string="Procedencia")
+    partner_id = fields.Many2one('res.partner',string='Dueño', required=True)
     evaluation = fields.One2many('veterinary.evaluation','animal',readonly=True)
     bloodtest = fields.One2many('veterinary.bloodtest','animal',readonly=True)
     citology = fields.One2many('veterinary.citology','animal',readonly=True)

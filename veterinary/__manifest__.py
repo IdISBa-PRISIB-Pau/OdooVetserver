@@ -6,7 +6,7 @@
         Clínica Lemoa 
     """,
     'description': """
-        Veterinary clinic management module based on EquiClinic by Bilal
+        Veterinary clinic management module developed for the Clínica Veterinaria Lemoa, based on EquiClinic by Bilal 
     """,
 
     'author': "ErrorAndTrial",

@@ -16,17 +16,17 @@ class Xr(models.Model):
     _order = "date desc"
     name = fields.Char(string='Test ID', required=True, copy=False, readonly=True,index=True, default=lambda self: _('New'))
     animal = fields.Many2one('veterinary.animal')
-    partner_id = fields.Many2one('res.partner', string='Owner', required=True)
-    appointment_id = fields.Many2one('veterinary.appointment',string='Appointment',required=True)  
-    date = fields.Datetime(string='Date', related='appointment_id.dateOfAppointment')
+    partner_id = fields.Many2one('res.partner', string='Dueño', required=True)
+    appointment_id = fields.Many2one('veterinary.appointment',string='Cita',required=True)  
+    date = fields.Datetime(string='Fecha', related='appointment_id.dateOfAppointment')
     user_id = fields.Many2one('res.users', string='Doctor')
-    xr_projection = fields.Char('Projection')
-    findings_xr = fields.Char('Findings')    
+    xr_projection = fields.Char('Proyección')
+    findings_xr = fields.Char('Hallazgos')    
     image = fields.Binary(
         "Image", attachment=True,
         help="This field holds the image used as image for the product, limited to 1024x1024px.")
-    other_xr = fields.Text('Other')
-    overall_assessment_xr = fields.Text('Overall Assessment')
+    other_xr = fields.Text('Otros')
+    overall_assessment_xr = fields.Text('Interpretación')
     
     @api.model
     def create(self, vals):

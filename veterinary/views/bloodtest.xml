@@ -8,6 +8,39 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
+    <!--     <record model="ir.ui.view" id="bloodtest_hist_view">
+            <field name="name">veterinary.bloodtest.tree</field>
+            <field name="model">veterinary.bloodtest</field>
+            <field name="arch" type="xml">
+                <tree string="bloodtest Tree">                    
+                    <field name="date"/>
+                    <field name="hematies"/>
+                    <field name="platellets"/>
+                    <field name="neutro"/>
+                    <field name="linfo"/>
+                    <field name="alb"/>
+                    <field name="tp"/>
+                    <field name="ag"/>
+                    <field name="glob"/>
+                    <field name="alp"/>
+                    <field name="alt"/>
+                    <field name="tbil"/>
+                    <field name="amy"/>
+                    <field name="crea"/>
+                    <field name="bun"/>
+                    <field name="bc"/>
+                    <field name="urea"/>
+                    <field name="glu"/>
+                    <field name="na"/>
+                    <field name="k"/>
+                    <field name="nak"/>
+                    <field name="ca"/>
+                    <field name="phos"/>
+                    <field name="cca"/>
+                </tree>
+            </field>
+        </record> -->
+
 
         <record model="ir.ui.view" id="bloodtest_tree_view">
             <field name="name">veterinary.bloodtest.tree</field>
@@ -39,7 +72,7 @@
                             </group>
                         </group>
                         <notebook>
-                            <page string="Blood test">
+                            <page string="Analítica 1/3">
                                 <group>
                                     <group>
                                         <field name="hematies"/>
@@ -48,7 +81,50 @@
                                         <field name="linfo"/>
                                     </group>                                    
                                 </group>
-                            </page>                                                        
+                                <group>
+                                    <group>
+                                        <field name="alb"/>
+                                        <field name="tp"/>
+                                        <field name="ag"/>
+                                        <field name="glob"/>
+                                    </group>                                    
+                                </group>
+                            </page>
+                            <page string="Analítica 2/3">
+                                <group>
+                                    <group>
+                                        <field name="alp"/>
+                                        <field name="alt"/>
+                                        <field name="tbil"/>
+                                        <field name="amy"/>
+                                    </group>                                    
+                                </group>
+                                <group>
+                                    <group>
+                                        <field name="crea"/>
+                                        <field name="bun"/>
+                                        <field name="bc"/>
+                                        <field name="urea"/>
+                                    </group>                                    
+                                </group>
+                            </page> 
+                                <page string="Analítica 3/3">
+                                <group>
+                                    <group>
+                                        <field name="glu"/>
+                                        <field name="na"/>
+                                        <field name="k"/>
+                                        <field name="nak"/>
+                                    </group>                                    
+                                </group>
+                                <group>
+                                    <group>
+                                        <field name="ca"/>
+                                        <field name="phos"/>
+                                        <field name="cca"/>
+                                    </group>                                    
+                                </group>
+                            </page>                                                          
                         </notebook>
                         <group>
                             <field name="other_bt"/>

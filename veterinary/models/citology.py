@@ -18,16 +18,16 @@ class Citology(models.Model):
     image = fields.Many2many(comodel_name="ir.attachment",relation="m2m_ir_cotology_rel",column1="name",column2="attachment_id",string="Images")
     
     animal = fields.Many2one('veterinary.animal')
-    owner_id = fields.Many2one('res.partner', string='Owner', required=True)
-    appointment_id = fields.Many2one('veterinary.appointment',string='Appointment',required=True)
-    date = fields.Datetime(string='Date', related='appointment_id.dateOfAppointment')
+    owner_id = fields.Many2one('res.partner', string='Dueño', required=True)
+    appointment_id = fields.Many2one('veterinary.appointment',string='Cita',required=True)
+    date = fields.Datetime(string='Fecha', related='appointment_id.dateOfAppointment')
     user_id = fields.Many2one('res.users', string='Doctor')    
     sample = fields.Char('Muestra')
     preparation = fields.Char('Preparación de la muestra')
     staining = fields.Char('Tinción')    
     findings_cito = fields.Text('Descripción')
-    other_cito = fields.Text('Other')
-    overall_assessment_cito = fields.Text('Overall Assessment')
+    other_cito = fields.Text('Otros')
+    overall_assessment_cito = fields.Text('Interpretación')
     
     @api.model
     def create(self, vals):

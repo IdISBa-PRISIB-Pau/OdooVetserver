@@ -108,6 +108,12 @@ else
   echo "Wkhtmltopdf isn't installed due to the choice of the user!"
 fi
 
+sudo apt-get install Wkhtmltopdf
+#mount shared network unit
+sudo mount /dev/sdb /mnt/netdrive
+sudo apt-get install samba
+
+
 echo -e "\n---- Create ODOO system user ----"
 sudo adduser --system --quiet --shell=/bin/bash --home=$OE_HOME --gecos 'ODOO' --group $OE_USER
 #The user should also be added to the sudo'ers group.

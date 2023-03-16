@@ -27,14 +27,12 @@
             <field name="arch" type="xml">
                 <form string="Evaluation Form" create="false">
                     <header>
-                        <button name="action_evaluation_sent" type="object" string="Send by Email" class="oe_highlight" />
-                        <button name="action_done" type="object" string="Done" class="oe_highlight" />
-                        <button name="action_create_invoice"  string="Invoice" type="object" class="oe_highlight"/>
+                        <button name="action_evaluation_sent" type="object" string="Enviar por Email" class="oe_highlight" />
                     </header>
                     <sheet>
                         <group>
                             <group>
-                                <field name="animal" default="none"/>
+                                <field name="animal"/>
                                 <field name="stage_id"/>
                                 <field name="partner_id" domain="[('customer', '=' ,True)]"/>
                             </group>                            
@@ -46,11 +44,11 @@
                         </group>
                         <notebook>
                             
-                            <page string="Musculoskeletal">
+                            <page string="Musculoesquelético">
                                 <group>
                                     <group>
                                         <field name="conformation" id="conformation"/>
-                                        <field name="le"/>
+                                        <field name="lf"/>
                                         <field name="lh"/>
                                         <field name="neck_back_pelvis"/>
                                         <field name="ridden"/>
@@ -67,14 +65,14 @@
                                 </group>
 
                             </page>
-                            <page string="Respiratory">
+                            <page string="Respiratorío">
                                 <group>
                                     <group>
                                         <field name="res_general" />
                                         <field name="lung_auscultation" />
                                     </group>
                                     <group>
-                                        <field name="upper_airway_endoscopy" />
+                                        <field name="upper_airway" />
                                     </group>
                                 </group>
                             </page>
@@ -100,7 +98,7 @@
                                     </group>
                                 </group>
                             </page>
-                            <page string="Nervous">
+                            <page string="Neurológico">
                                 <group>
                                     <group>
                                         <field name="nevr_general" />
@@ -112,7 +110,7 @@
                                     </group>
                                 </group>
                             </page>
-                            <page string="Reproductive and Urinary">
+                            <page string="Reproductivo y Urinario">
                                 <group>
                                     <group>
                                         <field name="fig" />
@@ -123,7 +121,7 @@
                                     </group>
                                 </group>
                             </page>
-                            <page string="Skin">
+                            <page string="Piel">
                                 <group>
                                     <group>
                                         <field name="scars" />
