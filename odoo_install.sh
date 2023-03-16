@@ -110,7 +110,8 @@ fi
 
 sudo apt-get install Wkhtmltopdf
 #mount shared network unit
-sudo mount /dev/sdb /mnt/netdrive
+sudo mkdir /home/cvlemoadmin/CVLemoa
+sudo mount /dev/sdb /home/cvlemoadmin/CVLemoa
 sudo apt-get install samba
 
 
