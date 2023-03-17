@@ -6,7 +6,7 @@
      <t t-call="web.external_layout">
         <!-- <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" /> -->
         <div class="page">
-            <h2>Consultation Report</h2>
+            <h2>Informe de la visita</h2>
             <strong>Cita:</strong>
             <span t-field="doc.appointment_id"/><br/>
             <strong>Animal:</strong>
@@ -21,28 +21,10 @@
             <strong>Motivo de consulta: </strong> <span t-field="doc.description"/>
             <br/>
             <strong>Enfermedad actual: </strong> <span t-field="doc.current_illness"/>
-            <br/> <br/>  
-            <strong>Diagnósticos: </strong> 
+            <br/> 
+            <br/>  
+            <strong>Exploración: </strong> 
             <br/>
-            <t t-foreach="doc.conditions"   t-as="line">
-                <span t-esc="line.name"/><br/>            
-            </t>
-            <br/> 
-            <br/> 
-             <strong>Procedimientos: </strong> 
-            <br/>
-            <t t-foreach="doc.procedures"   t-as="line">
-                <span t-esc="line.name"/><br/>              
-            </t>
-            <br/> 
-            <br/> 
-             <strong>Prescripciones: </strong> 
-            <br/>
-            <t t-foreach="doc.prescriptions"   t-as="line">
-                <span t-esc="line.name"/><br/>                
-            </t>
-            <br/> 
-            <!-- <strong>Codes: </strong> <span t-field="doc.codes.name"/> -->
             <table class="table table-condensed mt0" >
                 <thead>
                     <tr>
@@ -328,7 +310,27 @@
                       </tr>
                 </tbody>
             </table>
-
+            <br/>  
+            <strong>Diagnósticos: </strong> 
+            <br/>
+            <t t-foreach="doc.conditions"   t-as="line">
+                <span t-esc="line.name"/><br/>            
+            </t>
+            <br/> 
+            <br/> 
+             <strong>Procedimientos: </strong> 
+            <br/>
+            <t t-foreach="doc.procedures"   t-as="line">
+                <span t-esc="line.name"/><br/>              
+            </t>
+            <br/> 
+            <br/> 
+             <strong>Prescripciones: </strong> 
+            <br/>
+            <t t-foreach="doc.prescriptions"   t-as="line">
+                <span t-esc="line.name"/><br/>                
+            </t>
+            <br/> 
         </div>
     </t>
 </template>
