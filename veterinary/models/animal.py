@@ -40,6 +40,7 @@ class Animal(models.Model):
         ('m','Mascota'),('cr','Criador'),
         ('p','Protectora'),('other','Otro'))
         ,required=True,string="Procedencia")
+    breed = fields.Many2one('veterinary.breed',string='Raza', required=False)    
     partner_id = fields.Many2one('res.partner',string='Dueño', required=True)
     evaluation = fields.One2many('veterinary.evaluation','animal',readonly=True)
     bloodtest = fields.One2many('veterinary.bloodtest','animal',readonly=True)
@@ -75,3 +76,7 @@ class ResPartner(models.Model):
         result = action.read()[0]
         result['domain'] = [('partner_id', '=', self.id)]
         return result
+
+class Breed(models.Model):
+    _name = 'veterinary.breed'
+    name = fields.Char('Nombre', required=True)

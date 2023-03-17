@@ -2,7 +2,7 @@
 <odoo>
     <data>
         
-<template id="report_xr_document">
+<template id="report_echo_document">
      <t t-call="web.external_layout">
         <!-- <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" /> -->
         <div class="page">
@@ -16,33 +16,35 @@
             <strong>Edad: </strong> <span t-field="doc.animal.age"/>
             <strong>Procedencia: </strong> <span t-field="doc.animal.bread"/>
             <strong>Color: </strong> <span t-field="doc.animal.colour"/>
-            <strong>Dueño: </strong> <span t-field="doc.animal.partner_id"/>               
+            <strong>Dueño: </strong> <span t-field="doc.animal.partner_id"/>  
             <br/>
-            <strong>Proyección: </strong> <span t-field="doc.xr_projection"/>
+            <strong>Región: </strong> <span t-field="doc.region"/>
             <br/>
-            <strong>Hallazgos: </strong> <span t-field="doc.findings_xr"/>
+            <strong>Hallazgos: </strong> <span t-field="doc.findings_echo"/>
             <br/>
-            <strong>Imagen:</strong>
-            <span t-field="doc.image" t-options='{"widget": "image"}'/>
+            <strong>Otras observaciones: </strong> <span t-field="doc.other_echo"/>
+            <br/>
+            <strong>Interpretación: </strong> <span t-field="doc.overall_assessment_echo"/>
+            <br/>
         </div>
     </t>
 </template>
 
 
-<template id="report_xr">
+<template id="report_echo">
     <t t-call="web.html_container">
         <t t-foreach="docs" t-as="doc">
-            <t t-call="veterinary.report_xr_document"/>
+            <t t-call="veterinary.report_echo_document"/>
         </t>
     </t>
 </template>
         <report 
-            id="action_report_x"
-            string="Veterinary xr"
-            model="veterinary.xr" 
+            id="action_report_e"
+            string="Veterinary echo"
+            model="veterinary.echo" 
             report_type="qweb-pdf"
-            file="veterinary.report_xr" 
-            name="veterinary.report_xr"
+            file="veterinary.report_echo" 
+            name="veterinary.report_echo"
         />
 
 

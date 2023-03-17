@@ -6,25 +6,35 @@
      <t t-call="web.external_layout">
         <!-- <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" /> -->
         <div class="page">            
-            <strong>Name:</strong>
+            <strong>Código:</strong>
             <span t-field="doc.name"/><br/>
             <strong>Animal:</strong>
             <span t-field="doc.animal"/>
-            <strong>NO: </strong> <span t-field="doc.animal.microchip_number"/>
-            <strong>Sex: </strong> <span t-field="doc.animal.sex"/>
-            <strong>Age: </strong> <span t-field="doc.animal.age"/>
-            <strong>Bread and Use: </strong> <span t-field="doc.animal.bread"/>
-            <strong>Colour: </strong> <span t-field="doc.animal.colour"/>
-            <strong>Owner: </strong> <span t-field="doc.animal.partner_id"/>           
+            <strong>Num. Microchip: </strong> <span t-field="doc.animal.microchip_number"/>
+            <strong>Sexo: </strong> <span t-field="doc.animal.sex"/>
+            <strong>Edad: </strong> <span t-field="doc.animal.age"/>
+            <strong>Procedencia: </strong> <span t-field="doc.animal.bread"/>
+            <strong>Color: </strong> <span t-field="doc.animal.colour"/>
+            <strong>Dueño: </strong> <span t-field="doc.animal.partner_id"/>           
             <br/>
-            <strong>Sample: </strong> <span t-field="doc.sample"/>
+            <strong>Muestra: </strong> <span t-field="doc.sample"/>
             <br/>
-            <strong>Preparation: </strong> <span t-field="doc.preparation"/>  
-             <br/>          
-            <strong>Image:</strong>
-            <t t-foreach="doc.image"   t-as="line">
-            <span t-esc="line" t-options='{"widget": "image"}'/><br/>                
-            </t>           
+            <strong>Preparación: </strong> <span t-field="doc.preparation"/> <strong> Tinción: </strong> <span t-field="doc.staining"/> 
+             <br/>  
+             <strong>Hallazgos: </strong> <span t-field="doc.findings_cito"/>  
+             <br/>
+             <strong>Interpretación: </strong> <span t-field="doc.overall_assessment_cito"/>  
+             <br/>  
+             <strong>Otras observaciones: </strong> <span t-field="doc.other_cito"/>  
+             <br/>        
+            <strong>Imágenes:</strong>
+            <!-- <t t-foreach="doc.image"   t-as="line">
+                <span t-esc="line" t-options='{"widget": "image"}'/>                
+            </t>       -->  
+            <t t-foreach="doc.image" t-as="cito">
+                <img t-att-src="cito.image.image_src"/>
+            </t>
+   
         </div>
     </t>
 </template>

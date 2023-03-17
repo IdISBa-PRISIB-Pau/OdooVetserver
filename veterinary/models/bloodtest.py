@@ -77,7 +77,7 @@ class BloodTest(models.Model):
             'default_template_id': template_id,
             'default_composition_mode': 'comment',
             'mark_so_as_sent': True,
-            'custom_layout': "veterinary.email_template_test_sale",
+            'custom_layout': "veterinary.mail_template_data_notification_email_sale_order",
             'proforma': self.env.context.get('proforma', False),
             'force_email': True
         }

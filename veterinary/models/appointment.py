@@ -164,24 +164,6 @@ class Appointment(models.Model):
         references = {}
         invoices_origin = {}
         invoices_name = {}
-
-        # for appointment in self:
-        #     group_key = appointment.id
-        #     for line in appointment.evaluation_id.prescriptions.sorted(key=lambda l: l.qty_to_invoice < 0):
-        #         if float_is_zero(line.qty_to_invoice, precision_digits=precision):
-        #             continue
-        #         if line.qty_to_invoice > 0:
-        #             line.invoice_line_create(invoices[group_key].id, line.qty_to_invoice)
-        #         elif line.qty_to_invoice < 0 and final:
-        #             line.invoice_line_create(invoices[group_key].id, line.qty_to_invoice)
-        #
-        # for group_key in invoices:
-        #     invoices[group_key].write({'name': ', '.join(invoices_name[group_key]),
-        #                                'origin': ', '.join(invoices_origin[group_key])})
-        #
-        # if not invoices:
-        #     raise UserError(_('There is no invoiceable line.'))
-
         invoice.compute_taxes()
         if not invoice.invoice_line_ids:
             raise UserError(_('There is no invoiceable line.'))
@@ -205,6 +187,37 @@ class Appointment(models.Model):
     @api.one
     def action_done(self):
         self.state = 'done'
+
+    @api.multi
+    def action_appointment_sent(self):
+        '''
+        This function opens a window to compose an email, with the edi sale template message loaded by default
+        '''
+        self.ensure_one()
+        ir_model_data = self.env['ir.model.data']
+        try:
+            template_id = ir_model_data.get_object_reference('veterinary', 'email_template_appointment')[1]
+        except ValueError:
+            template_id = False
+        ctx = {
+            'default_model': 'veterinary.appointment',
+            'default_res_id': self.ids[0],
+            'default_use_template': bool(template_id),
+            'default_template_id': template_id,
+            'default_composition_mode': 'comment',
+            'mark_so_as_sent': True,
+            'custom_layout': "veterinary.mail_template_data_notification_email_sale_order",
+            'proforma': self.env.context.get('proforma', False),
+            'force_email': True
+        }
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'mail.compose.message',
+            'target': 'new',
+            'context': ctx,
+        }
 
 class EvaluationStages(models.Model):
     _name = 'veterinary.evaluation.stages'

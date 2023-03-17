@@ -7,31 +7,68 @@
         <!-- <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" /> -->
         <div class="page">
             
-            <strong>Name:</strong>
+            <strong>Código:</strong>
             <span t-field="doc.name"/><br/>
             <strong>Animal:</strong>
             <span t-field="doc.animal"/>
-            <strong>NO: </strong> <span t-field="doc.animal.microchip_number"/>
-            <strong>Sex: </strong> <span t-field="doc.animal.sex"/>
-            <strong>Age: </strong> <span t-field="doc.animal.age"/>
-            <strong>Bread and Use: </strong> <span t-field="doc.animal.bread"/>
-            <strong>Colour: </strong> <span t-field="doc.animal.colour"/>
-            <strong>Owner: </strong> <span t-field="doc.partner_id"/>
+            <strong>Num. Microchip: </strong> <span t-field="doc.animal.microchip_number"/>
+            <strong>Sexo: </strong> <span t-field="doc.animal.sex"/>
+            <strong>Edad: </strong> <span t-field="doc.animal.age"/>
+            <strong>Procedencia: </strong> <span t-field="doc.animal.bread"/>
+            <strong>Color: </strong> <span t-field="doc.animal.colour"/>
+            <strong>Dueño: </strong> <span t-field="doc.animal.partner_id"/>    
             <br/>
-            <strong>Red cell: </strong> <span t-field="doc.hematies"/>
+            <strong>Hematíes: </strong> <span t-field="doc.hematies"/>
             <br/>
-            <strong>Platellets: </strong> <span t-field="doc.platellets"/>
-            <br/>
+            <strong>Plaquetas: </strong> <span t-field="doc.platellets"/>
             <br/>
             <strong>Neutrófilos: </strong> <span t-field="doc.neutro"/>
             <br/>
             <strong>Linfocitos: </strong> <span t-field="doc.linfo"/>
             <br/>
-            <strong>Other:</strong>
+             <strong>Albúmina: </strong> <span t-field="doc.alb"/>
+            <br/>
+            <strong>Proteinas totales: </strong> <span t-field="doc.tp"/>
+            <br/>
+            <strong>Alb/Glob: </strong> <span t-field="doc.ag"/>
+            <br/>
+            <strong>Globulina: </strong> <span t-field="doc.glob"/>
+            <br/>
+            <strong>ALP: </strong> <span t-field="doc.alp"/>
+            <br/>
+            <strong>ALT: </strong> <span t-field="doc.alt"/>
+            <br/>
+            <strong>Bilirrubina T.: </strong> <span t-field="doc.tbil"/>
+            <br/>
+            <strong>Amilasa: </strong> <span t-field="doc.amy"/>
+            <br/>
+             <strong>Creatinina: </strong> <span t-field="doc.crea"/>
+            <br/>
+            <strong>BUN: </strong> <span t-field="doc.bun"/>
+            <br/>
+            <strong>BUN/Creatinina: </strong> <span t-field="doc.bc"/>
+            <br/>
+            <strong>Urea: </strong> <span t-field="doc.urea"/>
+            <br/>
+             <strong>Glucosa: </strong> <span t-field="doc.glu"/>
+            <br/>
+            <strong>Sodio: </strong> <span t-field="doc.na"/>
+            <br/>
+            <strong>Potasio: </strong> <span t-field="doc.k"/>
+            <br/>
+            <strong>Sodio/Potasio: </strong> <span t-field="doc.nak"/>
+            <br/>
+            <strong>Calcio: </strong> <span t-field="doc.ca"/>
+            <br/>
+            <strong>Fósforo: </strong> <span t-field="doc.phos"/>
+            <br/>
+            <strong>Calcio Corregido: </strong> <span t-field="doc.cca"/>
+            <br/>
+            <strong>Otros:</strong>
             <br/>
             <span t-field="doc.other_bt"/>
             <br/>
-            <strong>Overall Assessment:</strong>
+            <strong>Interpretación:</strong>
             <br/>
             <span t-field="doc.overall_assessment_bt"/>
             <br/>

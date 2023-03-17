@@ -2,7 +2,7 @@
 <odoo>
     <data noupdate="1">
         <!--Email template -->
-        <record id="email_template_edi_sale" model="mail.template">
+        <record id="email_template_evaluation" model="mail.template">
             <field name="name">Exploración - Envío por Email</field>
             <field name="email_from">${(object.user_id.email and '%s &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}</field>
             <field name="partner_to">${object.partner_id.id}</field>
@@ -13,8 +13,8 @@
             <field name="lang">${object.partner_id.lang}</field>
 
             <field name="body_html"><![CDATA[
-<p>Hola
-Aquí tiene su ${doc_name} <strong>${object.name}</strong>
+<p>Hola,<br/>
+Aquí tiene el informe de su visita con código <strong>${object.name}</strong>
 
 </p>
 
@@ -51,8 +51,8 @@ Aquí tiene su ${doc_name} <strong>${object.name}</strong>
             <field name="lang">${object.partner_id.lang}</field>
 
             <field name="body_html"><![CDATA[
-<p>Hola
-Aquí tiene su ${doc_name} <strong>${object.name}</strong>
+<p>Hola,<br/>
+Aquí tiene el informe de su citología con código <strong>${object.name}</strong>
 
 </p>
 
@@ -87,8 +87,8 @@ Aquí tiene su ${doc_name} <strong>${object.name}</strong>
             <field name="lang">${object.partner_id.lang}</field>
 
             <field name="body_html"><![CDATA[
-<p>Hola,
-Aquí tiene su ${doc_name} <strong>${object.name}</strong>
+<p>Hola,<br/>
+Aquí tiene el informe de su radiología con código <strong>${object.name}</strong>
 
 </p>
 
@@ -123,8 +123,8 @@ Aquí tiene su ${doc_name} <strong>${object.name}</strong>
             <field name="lang">${object.partner_id.lang}</field>
 
             <field name="body_html"><![CDATA[
-<p>Hola
-Aquí tiene su ${doc_name} <strong>${object.name}</strong>
+<p>Hola,<br/>
+Aquí tiene el informe de su analítica con código <strong>${object.name}</strong>
 
 </p>
 
@@ -149,5 +149,67 @@ Aquí tiene su ${doc_name} <strong>${object.name}</strong>
              
         </record>
 
+         <record id="email_template_echo" model="mail.template">
+            <field name="name">Ecografía - Envío por Email</field>
+            <field name="email_from">${(object.user_id.email and '%s &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="model_id" ref="veterinary.model_veterinary_echo"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_template" ref="action_report_e"/>
+            <field name="report_name">${(object.name or '').replace('/','_')}</field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+<p>Hola, <br/>
+Aquí tiene el informe de su ecografía con código <strong>${object.name}</strong>
+
+</p>
+
+    <br/><br/>
+% if is_online:
+    <center>
+        <a href="${access_url}" style="background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;" class="o_default_snippet_text">${access_name}</a>
+        <br/><br/>
+        <span style="color:#888888">(or view attached PDF)</span>
+    </center>
+    <br/>
+% endif
+
+<p>Gracias,</p>
+
+<p style="color:#eeeeee;">
+% if object.user_id and object.user_id.signature:
+    ${object.user_id.signature | safe}
+% endif
+</p>
+]]></field>
+             
+        </record>
+
+
+ <record id="email_template_appointment" model="mail.template">
+            <field name="name">Cita - Envío por Email</field>
+            <field name="email_from">${(object.user_id.email and '%s &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="model_id" ref="veterinary.model_veterinary_appointment"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+<p>Hola, <br/><br/>
+Tiene cita en la Clínica Veterinaria Lemoa, el <strong>${object.dateOfAppointment]</strong> con ${object.animal_id.name}
+
+</p>
+
+    <br/><br/>
+
+<p>Gracias,</p>
+
+<p style="color:#eeeeee;">
+% if object.user_id and object.user_id.signature:
+    ${object.user_id.signature | safe}
+% endif
+</p>
+]]></field>
+             
+        </record>
     </data>
 </odoo>

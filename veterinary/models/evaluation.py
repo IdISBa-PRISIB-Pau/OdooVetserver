@@ -27,7 +27,7 @@ class Evaluation(models.Model):
     appointment_id = fields.Many2one('veterinary.appointment', string='Cita')
     description = fields.Char(string='Motivo de consulta', store=True, related='appointment_id.description')
 
-    current_illness = fields.Text('Enfermedad actual')
+    current_illness = fields.Text('Anamnesis')
     stage_id = fields.Many2one('veterinary.evaluation.stages', string='Estado', required=False, default=default_stage,
                                group_expand='_read_group_stage_ids')
     user_id = fields.Many2one('res.users', string='Doctor', index=True, track_visibility='onchange',
@@ -56,7 +56,7 @@ class Evaluation(models.Model):
     # Respiratory System
     res_general = fields.Char('General')
     lung_auscultation = fields.Char('Auscultación pulmonar')
-    upper_airway = fields.Char('Vía aerea')
+    upper_airway = fields.Char('Vía aérea')
 
     # Cardiovascular System
     cardi_general = fields.Char('General')
@@ -74,7 +74,7 @@ class Evaluation(models.Model):
     gait = fields.Char('Marcha')
     eyes = fields.Char('Vista')
 
-    # Reproductive and Uniary System
+    # Reproductive and Urinary System
     fig = fields.Char('Castración')
     testicles = fields.Char('Testículos')
     vulva = fields.Char('Vulva')
@@ -110,7 +110,7 @@ class Evaluation(models.Model):
         self.ensure_one()
         ir_model_data = self.env['ir.model.data']
         try:
-            template_id = ir_model_data.get_object_reference('veterinary', 'email_template_edi_sale')[1]
+            template_id = ir_model_data.get_object_reference('veterinary', 'email_template_evaluation')[1]
         except ValueError:
             template_id = False
         ctx = {
@@ -120,7 +120,7 @@ class Evaluation(models.Model):
             'default_template_id': template_id,
             'default_composition_mode': 'comment',
             'mark_so_as_sent': True,
-            'custom_layout': "veterinary.email_template_edi_sale",
+            'custom_layout': "veterinary.mail_template_data_notification_email_sale_order",
             'proforma': self.env.context.get('proforma', False),
             'force_email': True
         }

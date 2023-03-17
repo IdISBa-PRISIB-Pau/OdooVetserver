@@ -92,6 +92,7 @@
                     <header>
                         <button name="action_create_invoice" invisible='1' states="confirm" string="Create Invoice" type="object"/>
                         <button name="%(action_account_cancel_appointment)d" states="draft,confirm" string="Cancel" type="action"/>
+                        <button name="action_appointment_sent" type="object" string="Enviar por Email" class="oe_highlight" />             
                         <field name="state" widget="statusbar" nolabel="1" clickable="True" statusbar_visible="draft,confirm,done,cancel"/>
                     </header>
                     <sheet>
