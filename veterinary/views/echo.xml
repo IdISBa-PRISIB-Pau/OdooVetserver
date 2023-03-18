@@ -32,11 +32,14 @@
                     <sheet>
                         <group>
                             <group>                        
-                                <field name="owner_id" domain="[('customer', '=' ,True)]"/>
-                                <field name="animal" domain="[('partner_id','=',owner_id)]"/>   
-                                <field name="appointment_id" domain="[('partner_id','=',owner_id)]"/>
+                                <field name="partner_id" domain="[('customer', '=' ,True)]"/>
+                                <field name="animal" domain="[('partner_id','=',partner_id)]"/>   
+                                <field name="appointment_id" domain="[('partner_id','=',partner_id)]"/>
                                 <field name="user_id" />
                             </group>
+                        </group>
+                         <group> 
+                            <field name="image" widget="many2many_binary"/>
                         </group>
                         <notebook>                            
                             <page string="Ecografía">

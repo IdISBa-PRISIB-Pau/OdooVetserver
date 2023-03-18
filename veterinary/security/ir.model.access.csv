@@ -17,3 +17,5 @@ access_evaluation_stages_user,veterinary.evaluation.stages user,model_veterinary
 access_evaluation_stages_manager,veterinary.evaluation.stages manager,model_veterinary_evaluation_stages,veterinary.group_veterinary_manager,1,1,1,1
 access_xr_user,veterinary.xr user,veterinary.model_veterinary_xr,veterinary.group_veterinary_user,1,1,1,0
 access_xr_manager,veterinary.xr manager,veterinary.model_veterinary_xr,veterinary.group_veterinary_manager,1,1,1,1
+access_breed_user,veterinary.breed user,veterinary.model_veterinary_breed,veterinary.group_veterinary_user,1,1,1,0
+access_breed_manager,veterinary.breed manager,veterinary.model_veterinary_breed,veterinary.group_veterinary_manager,1,1,1,1

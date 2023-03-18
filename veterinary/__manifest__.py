@@ -36,6 +36,7 @@
         'views/code.xml',  
         'views/menu.xml',     
         'reports/report.xml',
+        'reports/echo_report.xml',
         'reports/citology_report.xml',
         'reports/xr_report.xml',
         'reports/bloodtest_report.xml',

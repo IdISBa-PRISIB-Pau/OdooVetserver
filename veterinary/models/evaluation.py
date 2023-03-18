@@ -25,11 +25,14 @@ class Evaluation(models.Model):
     name = fields.Char('Código', compute='_compute_name')
     animal = fields.Many2one('veterinary.animal', string='Animal', readonly=True)
     appointment_id = fields.Many2one('veterinary.appointment', string='Cita')
+
+    date = fields.Datetime(related='appointment_id.dateOfAppointment')
     description = fields.Char(string='Motivo de consulta', store=True, related='appointment_id.description')
 
     current_illness = fields.Text('Anamnesis')
     stage_id = fields.Many2one('veterinary.evaluation.stages', string='Estado', required=False, default=default_stage,
                                group_expand='_read_group_stage_ids')
+    stage_name = fields.Char(related='stage_id.name')
     user_id = fields.Many2one('res.users', string='Doctor', index=True, track_visibility='onchange',
                               default=lambda self: self.env.user)
     partner_id = fields.Many2one('res.partner', string='Dueño', required=True, readonly=True)

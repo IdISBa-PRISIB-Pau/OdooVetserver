@@ -16,11 +16,11 @@ class Echo(models.Model):
     _order = "date desc"
     name = fields.Char(string='Test ID', required=True, copy=False, readonly=True,index=True, default=lambda self: _('New'))
     animal = fields.Many2one('veterinary.animal')
-    owner_id = fields.Many2one('res.partner', string='Dueño', required=True)
+    partner_id = fields.Many2one('res.partner', string='Dueño', required=True)
     appointment_id = fields.Many2one('veterinary.appointment',string='Cita',required=True)
     date = fields.Datetime(string='Fecha', related='appointment_id.dateOfAppointment')
     user_id = fields.Many2one('res.users', string='Doctor')
-    # Musculoskeletal System Page
+    image = fields.Many2many(comodel_name="ir.attachment",relation="m2m_ir_echography_rel",column1="name",column2="attachment_id",string="Images")
     region = fields.Char('Region')
     findings_echo = fields.Char('Hallazgos')    
     other_echo = fields.Text('Otros')

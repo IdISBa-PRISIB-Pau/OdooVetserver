@@ -6,7 +6,7 @@
             <field name="name">Exploraciones</field>
             <field name="res_model">veterinary.evaluation</field>
             <field name="view_type">form</field>
-            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_mode">tree,kanban,form</field>
         </record>
 
         <record model="ir.ui.view" id="evaluation_tree_view">
@@ -16,7 +16,10 @@
                 <tree string="Evaluation Tree" create="false">
                     <field name="animal"/>
                     <field name="appointment_id"/>
+                    <field name="date"/> 
+                    <field name="stage_name"/>
                     <field name="description"/>
+                    <field name="user_id"/>
                 </tree>
             </field>
         </record>

@@ -16,6 +16,7 @@
             <strong>Edad: </strong> <span t-field="doc.animal.age"/>
             <strong>Procedencia: </strong> <span t-field="doc.animal.bread"/>
             <strong>Color: </strong> <span t-field="doc.animal.colour"/>
+            <strong>Raza: </strong> <span t-field="doc.animal.breed"/>
             <strong>Dueño: </strong> <span t-field="doc.animal.partner_id"/>    
             <br/>
             <strong>Hematíes: </strong> <span t-field="doc.hematies"/>

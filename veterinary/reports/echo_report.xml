@@ -14,6 +14,7 @@
             <strong>Num. Microchip: </strong> <span t-field="doc.animal.microchip_number"/>
             <strong>Sexo: </strong> <span t-field="doc.animal.sex"/>
             <strong>Edad: </strong> <span t-field="doc.animal.age"/>
+            <strong>Raza: </strong> <span t-field="doc.animal.breed"/>
             <strong>Procedencia: </strong> <span t-field="doc.animal.bread"/>
             <strong>Color: </strong> <span t-field="doc.animal.colour"/>
             <strong>Dueño: </strong> <span t-field="doc.animal.partner_id"/>  
@@ -26,6 +27,10 @@
             <br/>
             <strong>Interpretación: </strong> <span t-field="doc.overall_assessment_echo"/>
             <br/>
+            <strong>Imágenes:</strong>
+            <t t-foreach="doc.image" t-as="picture">
+                <br/><span t-field="picture.datas" t-options='{"widget": "image"}'/><br/>                
+            </t>
         </div>
     </t>
 </template>
