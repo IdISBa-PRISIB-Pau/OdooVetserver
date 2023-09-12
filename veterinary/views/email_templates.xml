@@ -194,14 +194,10 @@ Aquí tiene el informe de su ecografía con código <strong>${object.name}</stro
             <field name="auto_delete" eval="True"/>
             <field name="lang">${object.partner_id.lang}</field>
             <field name="body_html"><![CDATA[
-<p>Hola, <br/><br/>
+<p>Hola,<br/><br/>
 
-Su cita con ${object.animal_id.name or 'su mascota' } en la Clínica Veterinaria Lemoa será el ${(datetime.datetime.strptime(object.dateOfAppointment,'%Y-%m-%d %H:%M:%S')+ relativedelta(hours=1)).strftime('%d/%m/%Y a las %H:%M:%S')}
-<br/><br/>
+Su cita con ${object.animal_id.name or 'su mascota' } en la Clínica Veterinaria Lemoa será el <strong> ${object.dateOfAppointment.split('-')[2].split(' ')[0]}/${object.dateOfAppointment.split('-')[1]}/${object.dateOfAppointment.split('-')[0]}</strong> a las <strong> ${object.dateOfAppointment.split(' ')[1]} </strong>
 
-Gracias,</p>
-
-% if object.user_id and object.user_id.signature: ${object.user_id.signature | safe} % endif 
 <br/><br/>
 Gracias,
 
