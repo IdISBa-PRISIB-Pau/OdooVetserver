@@ -11,9 +11,9 @@ class Animal(models.Model):
     def onchange_age(self):
         if self.dob:
             dt = self.dob
-            d1 = datetime.strptime(dt, "%Y-%m-%d").date()
-            d2 = datetime.today()
-            rd = relativedelta(d2, d1)
+            born = datetime.strptime(dt, "%Y-%m-%d").date()
+            today = datetime.today()
+            rd = today.year - born.year - ((today.month, today.day) < (born.month, born.day))
             self.age = str(rd.years) + "y" +" "+ str(rd.months) + "m" +" "+ str(rd.days) + "d"
         else:
             self.age = "Sin fecha de nacimiento!!"
