@@ -18,7 +18,7 @@
                     <field name="appointment_id"/>
                     <field name="date"/> 
                     <field name="stage_name"/>
-                    <field name="description"/>
+                    <field name="current_illness"/>
                     <field name="user_id"/>
                 </tree>
             </field>
