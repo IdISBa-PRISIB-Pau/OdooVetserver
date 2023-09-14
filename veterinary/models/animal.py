@@ -68,7 +68,7 @@ class Animal(models.Model):
             dt = self.dob
             born = datetime.strptime(dt, "%Y-%m-%d").date()
             today = datetime.today().date()
-            agedate = relativedelta(today, birth_date)
+            agedate = relativedelta(today, born)
             self.age = agedate.years + " años y " + agedate.months + " meses"
         else:
             self.age = "Sin fecha de nacimiento!!"
