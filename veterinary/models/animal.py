@@ -13,8 +13,7 @@ class Animal(models.Model):
             dt = self.dob
             born = datetime.strptime(dt, "%Y-%m-%d").date()
             today = datetime.today()
-            rd = today.year - born.year - ((today.month, today.day) < (born.month, born.day))
-            self.age = str(rd.years) + "y" +" "+ str(rd.months) + "m" +" "+ str(rd.days) + "d"
+            self.age = today.year - born.year - ((today.month, today.day) < (born.month, born.day))
         else:
             self.age = "Sin fecha de nacimiento!!"
 
