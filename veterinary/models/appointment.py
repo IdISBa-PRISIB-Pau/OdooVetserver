@@ -43,6 +43,20 @@ class Appointment(models.Model):
         , string='Estado', index=True, default='draft',
         track_visibility='onchange', copy=False
     )
+    def _compute_target_date_tz(self, cr, uid, ids, name, arg, context=None):
+        res = {}
+        for issue in self.browse(cr, uid, ids, context=context):
+            target_date_utc_dt = datetime.strptime(issue.target_date, DEFAULT_SERVER_DATETIME_FORMAT)
+            target_date_tz_dt = fields.datetime.context_timestamp(cr, uid, target_date_utc_dt, context=context)
+            res[issue.id] = target_date_tz_dt.strftime(DEFAULT_SERVER_DATETIME_FORMAT)           
+        return res
+
+    _columns = {
+        'Fecha de la cita': fields.function(
+            _compute_target_date_tz, type="datetime",
+            string="Fecha corregida por timezone para los emails",
+            )
+        }
 
     @api.model
     def create(self, vals):
