@@ -12,10 +12,9 @@ class Animal(models.Model):
         if self.dob:
             dt = self.dob
             born = datetime.strptime(dt, "%Y-%m-%d").date()
-            today = datetime.today()
-            years = today.year - born.year - ((today.month, today.day) < (born.month, born.day))
-            months = (today.month, today.day) - (born.month, born.day)
-            self.age = years + " años y " + months + " meses"
+            today = datetime.today().date()
+            agedate = relativedelta(today, birth_date)
+            self.age = agedate.years + " años y " + agedate.months + " meses"
         else:
             self.age = "Sin fecha de nacimiento!!"
 
@@ -65,7 +64,14 @@ class Animal(models.Model):
 
     def calculate_age(self):        
         today = date.today()
-        self.age = today.year - self.dob.year - ((today.month, today.day) < (self.dob.month, self.dob.day))
+        if self.dob:    
+            dt = self.dob
+            born = datetime.strptime(dt, "%Y-%m-%d").date()
+            today = datetime.today().date()
+            agedate = relativedelta(today, birth_date)
+            self.age = agedate.years + " años y " + agedate.months + " meses"
+        else:
+            self.age = "Sin fecha de nacimiento!!"
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
