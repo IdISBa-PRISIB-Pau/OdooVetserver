@@ -29,7 +29,7 @@ class Appointment(models.Model):
             res = target_date_tz_dt.strftime(DEFAULT_SERVER_DATETIME_FORMAT)           
             self.date_text = res
         else:
-            self.date_text = "Sin fecha de cita!!"
+            self.date_text = 'Sin fecha de cita!!'
     name = fields.Char(string='Código', readonly=True, default=lambda self: _('New'))
     description = fields.Char('Descripción')
     partner_id = fields.Many2one('res.partner', string='Dueño', required=True)
