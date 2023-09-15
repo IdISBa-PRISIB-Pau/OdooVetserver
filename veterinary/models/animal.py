@@ -17,17 +17,6 @@ class Animal(models.Model):
             self.age = str(agedate.years) + " años y " + str(agedate.months) + " meses"
         else:
             self.age = "Sin fecha de nacimiento!!"
-    @api.multi
-    def _total_appointment(self):
-        self.total_appointment = len(self.appointment_id)
-
-    def appointment_view(self):
-        action = self.env.ref('veterinary.action_appointment_form')
-        result = action.read()[0]
-        result['domain'] = [('animals', '=', self.id)]
-        return result
-
-    @api.depends('dob')
     def calculate_age(self):        
         today = date.today()
         if self.dob:    
@@ -37,8 +26,7 @@ class Animal(models.Model):
             agedate = relativedelta(today, born)
             self.age = str(agedate.years) + " años y " + str(agedate.months) + " meses"
         else:
-            self.age = "Sin fecha de nacimiento!!"
-            
+            self.age = "Sin fecha de nacimiento!!"            
     image = fields.Binary(
         "Image", attachment=True,
         help="This field holds the image used as image for the product, limited to 1024x1024px.")
@@ -72,6 +60,18 @@ class Animal(models.Model):
     _sql_constraints = [
     ('microchio_uniq', 'unique(microchip_number)', 'Microchip already exists!')
     ]
+
+    @api.multi
+    def _total_appointment(self):
+        self.total_appointment = len(self.appointment_id)
+
+    def appointment_view(self):
+        action = self.env.ref('veterinary.action_appointment_form')
+        result = action.read()[0]
+        result['domain'] = [('animals', '=', self.id)]
+        return result
+
+    
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
