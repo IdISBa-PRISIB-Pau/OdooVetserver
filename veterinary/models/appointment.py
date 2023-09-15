@@ -20,11 +20,12 @@ class AccountInvoice(models.Model):
 
 class Appointment(models.Model):
     @api.multi
-    def compute_target_date_tz(self):
+    def compute_target_date_tz(self):        
         res = ""
-        target_date_utc_dt = datetime.strptime(self.dateOfAppointment, DEFAULT_SERVER_DATETIME_FORMAT)
-        target_date_tz_dt = fields.datetime.context_timestamp(target_date_utc_dt)
-        res = target_date_tz_dt.strftime(DEFAULT_SERVER_DATETIME_FORMAT)           
+        if self.dateOfAppointment :
+            target_date_utc_dt = datetime.strptime(self.dateOfAppointment, DEFAULT_SERVER_DATETIME_FORMAT)
+            target_date_tz_dt = fields.datetime.context_timestamp(target_date_utc_dt)
+            res = target_date_tz_dt.strftime(DEFAULT_SERVER_DATETIME_FORMAT)           
         self.date_text = res
         
     _name = "veterinary.appointment"
