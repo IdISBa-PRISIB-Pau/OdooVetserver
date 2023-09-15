@@ -43,7 +43,7 @@ class Appointment(models.Model):
         , string='Estado', index=True, default='draft',
         track_visibility='onchange', copy=False
     )    
-    date_text = (compute=compute_target_date_tz,string="Fecha texto",store=True)
+    date_text = fields.Char(compute=compute_target_date_tz,string="Fecha texto",store=True)
 
     @api.model
     def create(self, vals):
