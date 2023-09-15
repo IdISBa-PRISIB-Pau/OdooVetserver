@@ -25,7 +25,7 @@ class Appointment(models.Model):
     def compute_target_date_tz(self):        
         if self.dateOfAppointment:
             target_date_utc_dt = datetime.strptime(self.dateOfAppointment,"%Y-%m-%d %H:%M:%S")
-            target_date_tz_dt = fields.datetime.context_timestamp(target_date_utc_dt)     
+            target_date_tz_dt = datetime.context_timestamp(target_date_utc_dt)     
             self.date_text = target_date_tz_dt
         else:
             self.date_text = 'Sin fecha de cita!!'
