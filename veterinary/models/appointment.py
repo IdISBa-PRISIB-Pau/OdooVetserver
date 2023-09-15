@@ -21,7 +21,7 @@ class AccountInvoice(models.Model):
 class Appointment(models.Model):
     _name = "veterinary.appointment"
     _order = "dateOfAppointment desc"
-    @api.depends('dateOfAppointment')
+    @api.one
     def compute_target_date_tz(self):        
         if self.dateOfAppointment:
             target_date_utc_dt = datetime.strptime(self.dateOfAppointment, DEFAULT_SERVER_DATETIME_FORMAT)
