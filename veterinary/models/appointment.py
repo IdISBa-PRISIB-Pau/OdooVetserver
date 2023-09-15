@@ -20,7 +20,7 @@ class AccountInvoice(models.Model):
 
 class Appointment(models.Model):
     @api.multi
-    def compute_target_date_tz(self, cr, uid, ids, name, arg, context=None):
+    def compute_target_date_tz(self):
         res = {}
         for issue in self.browse(cr, uid, ids, context=context):
             target_date_utc_dt = datetime.strptime(issue.target_date, DEFAULT_SERVER_DATETIME_FORMAT)
