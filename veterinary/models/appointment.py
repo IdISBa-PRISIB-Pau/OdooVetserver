@@ -19,6 +19,8 @@ class AccountInvoice(models.Model):
 
 
 class Appointment(models.Model):
+    _name = "veterinary.appointment"
+    _order = "dateOfAppointment desc"
     @api.depends('dateOfAppointment')
     def compute_target_date_tz(self):        
         if self.dateOfAppointment:
@@ -28,8 +30,6 @@ class Appointment(models.Model):
             self.date_text = res
         else:
             self.date_text = "Sin fecha de cita!!"
-    _name = "veterinary.appointment"
-    _order = "dateOfAppointment desc"
     name = fields.Char(string='Código', readonly=True, default=lambda self: _('New'))
     description = fields.Char('Descripción')
     partner_id = fields.Many2one('res.partner', string='Dueño', required=True)
