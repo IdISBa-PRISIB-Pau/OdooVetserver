@@ -19,7 +19,7 @@ class AccountInvoice(models.Model):
 
 
 class Appointment(models.Model):
-    @api.onchange('dateOfAppointment') 
+    @api.multi
     def compute_target_date_tz(self):
         res = ""
         target_date_utc_dt = datetime.strptime(self.dateOfAppointment, DEFAULT_SERVER_DATETIME_FORMAT)
@@ -51,7 +51,7 @@ class Appointment(models.Model):
         , string='Estado', index=True, default='draft',
         track_visibility='onchange', copy=False
     )    
-    date_text = fields.Char(compute=compute_target_date_tz,string="Fecha texto",store=True)
+    date_text = fields.Char(compute=compute_target_date_tz,string="Fecha_texto",store=True)
 
     @api.model
     def create(self, vals):
