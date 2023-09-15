@@ -19,6 +19,15 @@ class AccountInvoice(models.Model):
 
 
 class Appointment(models.Model):
+    @api.multi
+    def compute_target_date_tz(self, cr, uid, ids, name, arg, context=None):
+        res = {}
+        for issue in self.browse(cr, uid, ids, context=context):
+            target_date_utc_dt = datetime.strptime(issue.target_date, DEFAULT_SERVER_DATETIME_FORMAT)
+            target_date_tz_dt = fields.datetime.context_timestamp(cr, uid, target_date_utc_dt, context=context)
+            date_text = target_date_tz_dt.strftime(DEFAULT_SERVER_DATETIME_FORMAT)           
+        return date_text
+        
     _name = "veterinary.appointment"
     _order = "dateOfAppointment desc"
     name = fields.Char(string='Código', readonly=True, default=lambda self: _('New'))
@@ -50,16 +59,7 @@ class Appointment(models.Model):
         vals['name'] = self.env['ir.sequence'].next_by_code('appointment.number') or _('New')
         res = super(Appointment, self).create(vals)
         return res
-    
-    @api.multi
-    def compute_target_date_tz(self, cr, uid, ids, name, arg, context=None):
-        res = {}
-        for issue in self.browse(cr, uid, ids, context=context):
-            target_date_utc_dt = datetime.strptime(issue.target_date, DEFAULT_SERVER_DATETIME_FORMAT)
-            target_date_tz_dt = fields.datetime.context_timestamp(cr, uid, target_date_utc_dt, context=context)
-            date_text = target_date_tz_dt.strftime(DEFAULT_SERVER_DATETIME_FORMAT)           
-        return date_text
-        
+          
     @api.multi
     def _total_count(self):
         t = self.env['account.invoice'].search([['appointment_id', '=', self.id]])
