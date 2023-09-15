@@ -21,14 +21,7 @@ class AccountInvoice(models.Model):
 class Appointment(models.Model):
     _name = "veterinary.appointment"
     _order = "dateOfAppointment desc"
-    @api.one
-    def compute_target_date_tz(self):        
-        if self.dateOfAppointment:
-            target_date_utc_dt = datetime.strptime(self.dateOfAppointment,"%Y-%m-%d %H:%M:%S")
-            target_date_tz_dt = datetime.context_timestamp(target_date_utc_dt)     
-            self.date_text = target_date_tz_dt
-        else:
-            self.date_text = 'Sin fecha de cita!!'
+    
     name = fields.Char(string='Código', readonly=True, default=lambda self: _('New'))
     description = fields.Char('Descripción')
     partner_id = fields.Many2one('res.partner', string='Dueño', required=True)
@@ -51,7 +44,6 @@ class Appointment(models.Model):
         , string='Estado', index=True, default='draft',
         track_visibility='onchange', copy=False
     )    
-    date_text = fields.Char(compute=compute_target_date_tz,string="Fecha_texto",store=True)
 
     @api.model
     def create(self, vals):
