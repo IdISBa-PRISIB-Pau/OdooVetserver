@@ -33,7 +33,7 @@ class Animal(models.Model):
     name = fields.Char('Nombre', required=True)
     microchip_number = fields.Char('Microchip/Número de historia',required=True)
     dob = fields.Date('Fecha de nacimiento', required=True)
-    age = fields.Char(compute=calculate_age,string="Edad",store=True)
+    age = fields.Char(compute=onchange_age,string="Edad",store=True)
     appointment_id = fields.Many2many('veterinary.appointment')
     total_appointment = fields.Char('Total',compute='_total_appointment')
     colour =fields.Selection (
