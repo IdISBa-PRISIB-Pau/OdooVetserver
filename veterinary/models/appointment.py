@@ -19,15 +19,15 @@ class AccountInvoice(models.Model):
 
 
 class Appointment(models.Model):
-    @api.multi
+    @api.depends('dateOfAppointment')
     def compute_target_date_tz(self):        
-        res = ""
-        if self.dateOfAppointment :
+        if self.dateOfAppointment:
             target_date_utc_dt = datetime.strptime(self.dateOfAppointment, DEFAULT_SERVER_DATETIME_FORMAT)
             target_date_tz_dt = fields.datetime.context_timestamp(target_date_utc_dt)
             res = target_date_tz_dt.strftime(DEFAULT_SERVER_DATETIME_FORMAT)           
-        self.date_text = res
-        
+            self.date_text = res
+        else:
+            self.date_text = "Sin fecha de cita!!"
     _name = "veterinary.appointment"
     _order = "dateOfAppointment desc"
     name = fields.Char(string='Código', readonly=True, default=lambda self: _('New'))
