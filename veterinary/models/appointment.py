@@ -25,8 +25,8 @@ class Appointment(models.Model):
         for issue in self.browse():
             target_date_utc_dt = datetime.strptime(issue.target_date, DEFAULT_SERVER_DATETIME_FORMAT)
             target_date_tz_dt = fields.datetime.context_timestamp(target_date_utc_dt)
-            date_text = target_date_tz_dt.strftime(DEFAULT_SERVER_DATETIME_FORMAT)           
-        return date_text
+            date_text1 = target_date_tz_dt.strftime(DEFAULT_SERVER_DATETIME_FORMAT)           
+        self.date_text = date_text1
         
     _name = "veterinary.appointment"
     _order = "dateOfAppointment desc"
