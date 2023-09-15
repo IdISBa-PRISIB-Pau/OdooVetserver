@@ -21,7 +21,7 @@ class AccountInvoice(models.Model):
 class Appointment(models.Model):
     @api.multi
     def compute_target_date_tz(self):
-        res = {}
+        res = ""
         for issue in self.browse():
             target_date_utc_dt = datetime.strptime(issue.target_date, DEFAULT_SERVER_DATETIME_FORMAT)
             target_date_tz_dt = fields.datetime.context_timestamp(target_date_utc_dt)
