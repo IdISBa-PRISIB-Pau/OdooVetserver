@@ -24,10 +24,9 @@ class Appointment(models.Model):
     @api.one
     def compute_target_date_tz(self):        
         if self.dateOfAppointment:
-            target_date_utc_dt = datetime.strptime(self.dateOfAppointment, DEFAULT_SERVER_DATETIME_FORMAT)
-            target_date_tz_dt = fields.datetime.context_timestamp(target_date_utc_dt)
-            res = target_date_tz_dt.strftime(DEFAULT_SERVER_DATETIME_FORMAT)           
-            self.date_text = res
+            target_date_utc_dt = datetime.strptime(self.dateOfAppointment)
+            target_date_tz_dt = fields.datetime.context_timestamp(target_date_utc_dt)     
+            self.date_text = target_date_tz_dt
         else:
             self.date_text = 'Sin fecha de cita!!'
     name = fields.Char(string='Código', readonly=True, default=lambda self: _('New'))
