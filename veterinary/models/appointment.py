@@ -48,8 +48,8 @@ class Appointment(models.Model):
         for issue in self.browse(cr, uid, ids, context=context):
             target_date_utc_dt = datetime.strptime(issue.target_date, DEFAULT_SERVER_DATETIME_FORMAT)
             target_date_tz_dt = fields.datetime.context_timestamp(cr, uid, target_date_utc_dt, context=context)
-            res[issue.id] = target_date_tz_dt.strftime(DEFAULT_SERVER_DATETIME_FORMAT)           
-        return res
+            date_text = target_date_tz_dt.strftime(DEFAULT_SERVER_DATETIME_FORMAT)           
+        return date_text
         
 
     @api.model
