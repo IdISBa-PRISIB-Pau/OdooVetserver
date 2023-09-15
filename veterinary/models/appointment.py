@@ -42,7 +42,15 @@ class Appointment(models.Model):
          ('cancel', 'Cancelar')]
         , string='Estado', index=True, default='draft',
         track_visibility='onchange', copy=False
-    )
+    )    
+
+    @api.model
+    def create(self, vals):
+        vals['name'] = self.env['ir.sequence'].next_by_code('appointment.number') or _('New')
+        res = super(Appointment, self).create(vals)
+        return res
+    
+    @api.multi
     def _compute_target_date_tz(self, cr, uid, ids, name, arg, context=None):
         res = {}
         for issue in self.browse(cr, uid, ids, context=context):
@@ -51,13 +59,6 @@ class Appointment(models.Model):
             date_text = target_date_tz_dt.strftime(DEFAULT_SERVER_DATETIME_FORMAT)           
         return date_text
         
-
-    @api.model
-    def create(self, vals):
-        vals['name'] = self.env['ir.sequence'].next_by_code('appointment.number') or _('New')
-        res = super(Appointment, self).create(vals)
-        return res
-
     @api.multi
     def _total_count(self):
         t = self.env['account.invoice'].search([['appointment_id', '=', self.id]])
