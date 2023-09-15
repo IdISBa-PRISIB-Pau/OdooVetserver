@@ -196,9 +196,8 @@ Aquí tiene el informe de su ecografía con código <strong>${object.name}</stro
             <field name="body_html"><![CDATA[
 <p>Hola,<br/><br/>
 
-Su cita con ${object.animal_id.name or 'su mascota' } en la Clínica Veterinaria Lemoa será el <p class="m-0" t-esc="context_timestamp(object.compute_target_date_tz).strftime('%Y-%m-%d, %H:%M:%S')"/> 
-/*<strong> ${object.compute_target_date_tz.split('-')[2].split(' ')[0]}/${object.compute_target_date_tz.split('-')[1]}/${object.compute_target_date_tz.split('-')[0]}</strong> a las <strong> ${object._compute_target_date_tz.split(' ')[1]} </strong>
-*/
+Su cita con ${object.animal_id or 'su mascota' } en la Clínica Veterinaria Lemoa será el ${format_tz(object.dateOfAppointment, tz="CET", context={'lang':object.partner_id.lang})}
+
 <br/><br/>
 Gracias,
 
