@@ -22,9 +22,9 @@ class Appointment(models.Model):
     @api.multi
     def compute_target_date_tz(self):
         res = {}
-        for issue in self.browse(cr, uid, ids, context=context):
+        for issue in self.browse():
             target_date_utc_dt = datetime.strptime(issue.target_date, DEFAULT_SERVER_DATETIME_FORMAT)
-            target_date_tz_dt = fields.datetime.context_timestamp(cr, uid, target_date_utc_dt, context=context)
+            target_date_tz_dt = fields.datetime.context_timestamp(target_date_utc_dt)
             date_text = target_date_tz_dt.strftime(DEFAULT_SERVER_DATETIME_FORMAT)           
         return date_text
         
